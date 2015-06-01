@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="05bbc1f8-5078-4468-b858-a111c4ee1dbc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://dorkservices.com/Services/DorkSyncService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DorkSyncService1.disco" MetadataType="Disco" ID="b378f9dd-ddf4-4d32-8954-61569fc01f43" SourceId="1" SourceUrl="http://dorkservices.com/Services/DorkSyncService.svc?disco" />
+    <MetadataFile FileName="DorkSyncService3.xsd" MetadataType="Schema" ID="cf21e30b-249b-49b4-a2b0-a0e027e5672b" SourceId="1" SourceUrl="http://dorkservices.com/Services/DorkSyncService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DorkSyncService31.xsd" MetadataType="Schema" ID="30a87209-1aff-4d4d-91cf-f7611eba7462" SourceId="1" SourceUrl="http://dorkservices.com/Services/DorkSyncService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DorkSyncService1.wsdl" MetadataType="Wsdl" ID="a967623d-e323-4b04-8d2b-8796a08de458" SourceId="1" SourceUrl="http://dorkservices.com/Services/DorkSyncService.svc?wsdl" />
+    <MetadataFile FileName="DorkSyncService32.xsd" MetadataType="Schema" ID="48107270-7a82-40ce-9934-1277e252f7b8" SourceId="1" SourceUrl="http://dorkservices.com/Services/DorkSyncService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

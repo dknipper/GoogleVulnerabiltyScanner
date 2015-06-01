@@ -1,0 +1,72 @@
+﻿@model DorkWeb.Models.GoogleDorkMasterViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+    
+@using (Html.BeginForm())
+{
+    <p>
+        Google Dork Types: @Html.ListBox("GoogleDorkParentValues", Model.GoogleDorkParentList)
+    </p>
+    <p>
+        Site: @Html.TextBoxFor(model => model.SiteToSearch)
+    </p>
+    <p>
+        Keywords: @Html.TextBoxFor(model => model.Keywords)
+    </p>
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+
+        foreach (var parent in Model.GoogleDorkParentViewModels)
+{
+    <div>@parent.Name</div>
+    
+    <table>
+        <tr>
+            <th style="padding: 4px;">
+                Date
+            </th>
+            <th style="padding: 4px;">
+                Title
+            </th>
+            <th style="padding: 4px;">
+                Summary
+            </th>
+            <th style="padding: 4px;">
+                GHDB&nbsp;URL
+            </th>
+        </tr>
+    
+        @foreach (var dork in parent.GoogleDorks)
+        {
+            <tr>
+                <td style="padding: 4px;">
+                    @Html.DisplayFor(x => dork.DiscoveryDate)  
+                </td>
+                <td style="padding: 4px;">
+                    <a href="@dork.GoogleUrl" target="googleLink">Google&nbsp;Link</a>  
+                </td>
+                <td style="padding: 4px;">
+                    @dork.Summary
+                </td>
+                <td style="padding: 4px;">
+                    <a href="@dork.GhdbUrl" target="ghdbLink">Ghdb&nbsp;Link</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
+}
+<br/><br/>
+
+
+
+
+

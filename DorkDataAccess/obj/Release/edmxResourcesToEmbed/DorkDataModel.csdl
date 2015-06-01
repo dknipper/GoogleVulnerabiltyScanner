@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DorkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DorkEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="GoogleDorks" EntityType="DorkModel.GoogleDork" />
+    <EntitySet Name="GoogleDorkParents" EntityType="DorkModel.GoogleDorkParent" />
+    <EntitySet Name="VulnerableSites" EntityType="DorkModel.VulnerableSite" />
+    <EntitySet Name="FullGoogleDorks" EntityType="DorkModel.FullGoogleDork" />
+  </EntityContainer>
+  <EntityType Name="GoogleDork">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscoveryDate" Type="DateTime" Precision="3" />
+    <Property Name="Summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GoogleDorkParentId" Type="Int32" Nullable="false" />
+    <Property Name="GoogleUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+    <Property Name="GhdbUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="GoogleDorkParent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VulnerableSite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="GoogleUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Site" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Keywords" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="FullGoogleDork">
+    <Key>
+      <PropertyRef Name="GoogleDorkParentId" />
+      <PropertyRef Name="GoogleDorkParentName" />
+      <PropertyRef Name="GoogleDorkId" />
+    </Key>
+    <Property Type="DateTime" Name="DiscoveryDate" Precision="3" />
+    <Property Type="String" Name="Summary" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="GoogleDorkParentId" Nullable="false" />
+    <Property Type="String" Name="GoogleDorkParentName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GoogleUrl" MaxLength="1000" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="GhdbUrl" MaxLength="1000" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="GoogleDorkId" Nullable="false" />
+  </EntityType>
+</Schema>

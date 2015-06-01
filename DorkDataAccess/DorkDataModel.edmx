@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DorkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DorkModelStoreContainer">
+          <EntitySet Name="GoogleDork" EntityType="DorkModel.Store.GoogleDork" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GoogleDorkParent" EntityType="DorkModel.Store.GoogleDorkParent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VulnerableSite" EntityType="DorkModel.Store.VulnerableSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FullGoogleDork" EntityType="DorkModel.Store.FullGoogleDork" store:Type="Views" store:Schema="dbo" store:Name="FullGoogleDork">
+            <DefiningQuery>SELECT 
+      [FullGoogleDork].[DiscoveryDate] AS [DiscoveryDate], 
+      [FullGoogleDork].[Summary] AS [Summary], 
+      [FullGoogleDork].[GoogleDorkParentId] AS [GoogleDorkParentId], 
+      [FullGoogleDork].[GoogleDorkParentName] AS [GoogleDorkParentName], 
+      [FullGoogleDork].[GoogleUrl] AS [GoogleUrl], 
+      [FullGoogleDork].[GhdbUrl] AS [GhdbUrl], 
+      [FullGoogleDork].[GoogleDorkId] AS [GoogleDorkId]
+      FROM [dbo].[FullGoogleDork] AS [FullGoogleDork]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="GoogleDork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DiscoveryDate" Type="datetime" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="GoogleDorkParentId" Type="int" Nullable="false" />
+          <Property Name="GoogleUrl" Type="nchar" MaxLength="1000" />
+          <Property Name="GhdbUrl" Type="nchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="GoogleDorkParent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VulnerableSite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="GoogleUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Site" Type="nvarchar" MaxLength="255" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Dork.dbo.FullGoogleDork' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="FullGoogleDork">
+          <Key>
+            <PropertyRef Name="GoogleDorkParentId" />
+            <PropertyRef Name="GoogleDorkParentName" />
+            <PropertyRef Name="GoogleDorkId" />
+          </Key>
+          <Property Name="DiscoveryDate" Type="datetime" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="GoogleDorkParentId" Type="int" Nullable="false" />
+          <Property Name="GoogleDorkParentName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="GoogleUrl" Type="nchar" MaxLength="1000" />
+          <Property Name="GhdbUrl" Type="nchar" MaxLength="1000" />
+          <Property Name="GoogleDorkId" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DorkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DorkEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="GoogleDorks" EntityType="DorkModel.GoogleDork" />
+          <EntitySet Name="GoogleDorkParents" EntityType="DorkModel.GoogleDorkParent" />
+          <EntitySet Name="VulnerableSites" EntityType="DorkModel.VulnerableSite" />
+          <EntitySet Name="FullGoogleDorks" EntityType="DorkModel.FullGoogleDork" />
+        </EntityContainer>
+        <EntityType Name="GoogleDork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscoveryDate" Type="DateTime" Precision="3" />
+          <Property Name="Summary" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GoogleDorkParentId" Type="Int32" Nullable="false" />
+          <Property Name="GoogleUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+          <Property Name="GhdbUrl" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+          </EntityType>
+        <EntityType Name="GoogleDorkParent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VulnerableSite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GoogleUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Site" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Keywords" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FullGoogleDork">
+          <Key>
+            <PropertyRef Name="GoogleDorkParentId" />
+            <PropertyRef Name="GoogleDorkParentName" />
+            <PropertyRef Name="GoogleDorkId" />
+          </Key>
+          <Property Type="DateTime" Name="DiscoveryDate" Precision="3" />
+          <Property Type="String" Name="Summary" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GoogleDorkParentId" Nullable="false" />
+          <Property Type="String" Name="GoogleDorkParentName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GoogleUrl" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="GhdbUrl" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="GoogleDorkId" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DorkModelStoreContainer" CdmEntityContainer="DorkEntities">
+          <EntitySetMapping Name="GoogleDorks">
+            <EntityTypeMapping TypeName="DorkModel.GoogleDork">
+              <MappingFragment StoreEntitySet="GoogleDork">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="GoogleDorkParentId" ColumnName="GoogleDorkParentId" />
+                <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
+                <ScalarProperty Name="GhdbUrl" ColumnName="GhdbUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoogleDorkParents">
+            <EntityTypeMapping TypeName="DorkModel.GoogleDorkParent">
+              <MappingFragment StoreEntitySet="GoogleDorkParent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VulnerableSites">
+            <EntityTypeMapping TypeName="DorkModel.VulnerableSite">
+              <MappingFragment StoreEntitySet="VulnerableSite">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FullGoogleDorks">
+            <EntityTypeMapping TypeName="DorkModel.FullGoogleDork">
+              <MappingFragment StoreEntitySet="FullGoogleDork">
+                <ScalarProperty Name="GoogleDorkId" ColumnName="GoogleDorkId" />
+                <ScalarProperty Name="GhdbUrl" ColumnName="GhdbUrl" />
+                <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
+                <ScalarProperty Name="GoogleDorkParentName" ColumnName="GoogleDorkParentName" />
+                <ScalarProperty Name="GoogleDorkParentId" ColumnName="GoogleDorkParentId" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

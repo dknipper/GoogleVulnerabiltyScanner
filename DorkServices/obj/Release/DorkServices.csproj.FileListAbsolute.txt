@@ -1,0 +1,13 @@
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkServices.dll.config
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkServices.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkServices.pdb
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkBusiness.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\HtmlAgilityPack.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkDataAccess.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\EntityFramework.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\System.Linq.Dynamic.dll
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkBusiness.pdb
+C:\Visual Studio Projects\Dork\DorkServices\bin\DorkDataAccess.pdb
+C:\Visual Studio Projects\Dork\DorkServices\obj\Release\DorkServices.csprojResolveAssemblyReference.cache
+C:\Visual Studio Projects\Dork\DorkServices\obj\Release\DorkServices.dll
+C:\Visual Studio Projects\Dork\DorkServices\obj\Release\DorkServices.pdb

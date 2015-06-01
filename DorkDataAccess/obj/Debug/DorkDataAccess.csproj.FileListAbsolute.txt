@@ -1,0 +1,8 @@
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Debug\DorkDataAccess.dll.config
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Debug\DorkDataAccess.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Debug\DorkDataAccess.pdb
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Debug\EntityFramework.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Debug\EntityFramework.xml
+C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Debug\DorkDataAccess.csprojResolveAssemblyReference.cache
+C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Debug\DorkDataAccess.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Debug\DorkDataAccess.pdb

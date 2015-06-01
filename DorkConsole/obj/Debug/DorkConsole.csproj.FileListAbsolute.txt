@@ -1,0 +1,5 @@
+C:\Visual Studio Projects\Dork\DorkConsole\bin\Debug\DorkConsole.exe.config
+C:\Visual Studio Projects\Dork\DorkConsole\bin\Debug\DorkConsole.exe
+C:\Visual Studio Projects\Dork\DorkConsole\bin\Debug\DorkConsole.pdb
+C:\Visual Studio Projects\Dork\DorkConsole\obj\Debug\DorkConsole.exe
+C:\Visual Studio Projects\Dork\DorkConsole\obj\Debug\DorkConsole.pdb

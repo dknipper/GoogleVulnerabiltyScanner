@@ -1,0 +1,48 @@
+﻿@model DorkWeb.Models.GoogleDorkMasterViewModel
+
+@{
+    ViewBag.Title = "DorksList";
+}
+
+<h2>Dorks List</h2>
+<br/><br/>
+
+@foreach (var parent in Model.GoogleDorkParentViewModels)
+{
+    <div>@parent.Name</div>
+    
+    <table>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Summary
+            </th>
+            <th>
+                GHDB&nbsp;URL
+            </th>
+        </tr>
+    
+        @foreach (var dork in parent.GoogleDorks)
+        {
+            <tr>
+                <td>
+                    @dork.DiscoveryDate.ToShortTimeString()
+                </td>
+                <td>
+                    @dork.GoogleUrl
+                </td>
+                <td>
+                    @dork.Summary
+                </td>
+                <td>
+                    @dork.GhdbUrl
+                </td>
+            </tr>
+        }
+    </table>
+}

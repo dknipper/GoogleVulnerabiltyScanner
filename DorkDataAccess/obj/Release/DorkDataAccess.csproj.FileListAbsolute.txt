@@ -1,0 +1,7 @@
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\DorkDataAccess.dll.config
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\DorkDataAccess.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\DorkDataAccess.pdb
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\EntityFramework.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\EntityFramework.xml
+C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Release\DorkDataAccess.dll
+C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Release\DorkDataAccess.pdb
