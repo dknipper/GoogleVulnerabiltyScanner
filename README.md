@@ -1,4 +1,4 @@
-# Dork
+# GoogleVulnerabiltyScanner
 Google Hack Database Web Site Scrapper w/ DB updater utility. ASP.NET MVC web utility for generating Google hack query links. IIS/WCF/Console
 
 This tool is intended to be used to find Google Hack/Dork vulnerabilities in web applications. I originally wrote this for a friend who was scanning his site for vulnerabilities. The world was missing a tool like this.
