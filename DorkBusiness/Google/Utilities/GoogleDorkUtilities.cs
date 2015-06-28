@@ -65,6 +65,28 @@ namespace DorkBusiness.Google.Utilities
                     ProcessDork(tr, googleDorkParent, client, googleDorkTotal, ref processedDorks);
                 }
             }
+
+            if (OnGoogleDorkSyncProgressChange == null)
+            {
+                return googleDorkParents;
+            }
+
+            const string allDone = "All Done!";
+            var processedItem =
+                new GoogleDorkSyncProgress
+                {
+                    Date = DateTime.Now,
+                    GhdbUrl = allDone,
+                    GoogleDorkParentName = allDone,
+                    ProcessedNumber = processedDorks,
+                    Summary = allDone,
+                    Title = allDone,
+                    PercentageComplete = 100
+                };
+
+            var args = new GoogleDorkSyncProgressChangeEventArgs(processedItem);
+            OnGoogleDorkSyncProgressChange(this, args);
+
             return googleDorkParents;
         }
 

@@ -9,7 +9,7 @@ using DorkServices.ServiceInterfaces;
 namespace DorkServices.Services
 {
     [AutomapServiceBehavior]
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single, IncludeExceptionDetailInFaults = true)]
     public class DorkSyncService : IDorkSyncService
     {
         private IDorkSyncServiceProgress _callback;

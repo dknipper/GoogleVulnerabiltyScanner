@@ -31,3 +31,36 @@ C:\Visual Studio Projects\Dork\DorkWeb\bin\System.Web.WebPages.Razor.xml
 C:\Visual Studio Projects\Dork\DorkWeb\obj\Debug\DorkWeb.dll
 C:\Visual Studio Projects\Dork\DorkWeb\obj\Debug\DorkWeb.pdb
 C:\Visual Studio Projects\Dork\DorkWeb\obj\Debug\DorkWeb.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\DorkWeb.dll.config
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\DorkWeb.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\DorkWeb.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\AutoMapper.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\AutoMapper.Net4.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\Newtonsoft.Json.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Net.Http.Formatting.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Helpers.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Http.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Http.WebHost.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Mvc.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Razor.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.Deployment.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.Razor.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\AutoMapper.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\AutoMapper.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\AutoMapper.Net4.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\Newtonsoft.Json.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Net.Http.Formatting.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Helpers.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Http.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Http.WebHost.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Mvc.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.Razor.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.Deployment.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\bin\System.Web.WebPages.Razor.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\obj\Debug\DorkWeb.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\obj\Debug\DorkWeb.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWeb\obj\Debug\DorkWeb.pdb

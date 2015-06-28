@@ -1,0 +1,13 @@
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkWindowsApp.exe.config
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkWindowsApp.exe
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkWindowsApp.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\MainWindow.baml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\MainWindow.g.cs
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\App.g.cs
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp_MarkupCompile.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.g.resources
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.Properties.Resources.resources
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.csproj.GenerateResource.Cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.exe
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.pdb

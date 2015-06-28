@@ -16,3 +16,21 @@ C:\Visual Studio Projects\Dork\DorkServices\bin\DorkDataAccess.pdb
 C:\Visual Studio Projects\Dork\DorkServices\obj\Debug\DorkServices.csprojResolveAssemblyReference.cache
 C:\Visual Studio Projects\Dork\DorkServices\obj\Debug\DorkServices.dll
 C:\Visual Studio Projects\Dork\DorkServices\obj\Debug\DorkServices.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\AutoMapper.Net4.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkServices.dll.config
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkServices.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkServices.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\AutoMapper.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkBusiness.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\HtmlAgilityPack.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkDataAccess.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\EntityFramework.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\System.Linq.Dynamic.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkBusiness.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\AutoMapper.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\AutoMapper.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\AutoMapper.Net4.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.pdb
