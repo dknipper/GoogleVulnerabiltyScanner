@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DorkWeb", "DorkWeb\DorkWeb.csproj", "{9EA5EA06-A68E-4DB3-91E9-BCE309049419}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DorkBusiness", "DorkBusiness\DorkBusiness.csproj", "{6A953725-DB7C-47CC-BD68-A8063A9D5732}"
@@ -12,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DorkDataAccess", "DorkDataAccess\DorkDataAccess.csproj", "{D5DC4E76-638E-49BA-B870-81A18611ABBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DorkServices", "DorkServices\DorkServices.csproj", "{6EC68A93-682E-402F-9E83-A5B985AF2B7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DorkWindowsApp", "DorkWindowsApp\DorkWindowsApp.csproj", "{0ECF14EE-B073-43C3-8B57-E941C5063FDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{6EC68A93-682E-402F-9E83-A5B985AF2B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC68A93-682E-402F-9E83-A5B985AF2B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC68A93-682E-402F-9E83-A5B985AF2B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECF14EE-B073-43C3-8B57-E941C5063FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECF14EE-B073-43C3-8B57-E941C5063FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECF14EE-B073-43C3-8B57-E941C5063FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECF14EE-B073-43C3-8B57-E941C5063FDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

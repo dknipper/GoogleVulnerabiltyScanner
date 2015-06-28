@@ -6,7 +6,7 @@ namespace DorkWeb.AppSettings
     {
         public static string DorkServiceActiveEndpoint 
         {
-            get { return ConfigurationManager.AppSettings["DorkServiceActiveEndpoint"] ?? ""; }
+            get { return ConfigurationManager.AppSettings["DorkServiceActiveEndpoint"] ?? string.Empty; }
         }
     }
 }

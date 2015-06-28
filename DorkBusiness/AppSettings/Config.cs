@@ -6,12 +6,12 @@ namespace DorkBusiness.AppSettings
     {
         public static string GhdbHomePage 
         {
-            get { return ConfigurationManager.AppSettings["GhdbHomePage"] ?? ""; }
+            get { return ConfigurationManager.AppSettings["GhdbHomePage"] ?? string.Empty; }
         }
 
         public static string FakeScraperUserAgent
         {
-            get { return ConfigurationManager.AppSettings["FakeScraperUserAgent"] ?? ""; }
+            get { return ConfigurationManager.AppSettings["FakeScraperUserAgent"] ?? string.Empty; }
         }
     }
 }

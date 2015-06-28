@@ -32,7 +32,7 @@ namespace DorkConsole
             Console.WriteLine(string.Concat("Parent:    ", processedItem.GoogleDorkParentName));
             Console.WriteLine(string.Concat("GHDB Url:  ", processedItem.GhdbUrl));
             Console.WriteLine(string.Concat("Google URL:  ", processedItem.Title));
-            Console.WriteLine("");
+            Console.WriteLine(string.Empty);
         }
     }
 }

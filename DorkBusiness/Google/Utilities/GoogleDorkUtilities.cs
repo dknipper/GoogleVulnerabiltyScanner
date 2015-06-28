@@ -418,8 +418,8 @@ namespace DorkBusiness.Google.Utilities
                         googleDorkParents.Add(googleDorkParent);
                     }
 
-                    var googleUrl = (!string.IsNullOrEmpty(site)) ? fullGoogleDork.GoogleUrl.Replace("??site??", site): fullGoogleDork.GoogleUrl.Replace("site:??site??", "");
-                    googleUrl = (!string.IsNullOrEmpty(keywords)) ? googleUrl.Replace("??keywords??", keywords) : googleUrl.Replace("??keywords?? ", "");
+                    var googleUrl = (!string.IsNullOrEmpty(site)) ? fullGoogleDork.GoogleUrl.Replace("??site??", site) : fullGoogleDork.GoogleUrl.Replace("site:??site??", string.Empty);
+                    googleUrl = (!string.IsNullOrEmpty(keywords)) ? googleUrl.Replace("??keywords??", keywords) : googleUrl.Replace("??keywords?? ", string.Empty);
 
                     googleDorkParent.GoogleDorks.Add(
                         new GoogleDork

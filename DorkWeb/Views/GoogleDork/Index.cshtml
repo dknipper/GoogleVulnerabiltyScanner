@@ -5,7 +5,6 @@
 }
 
 <h2>Index</h2>
-
     
 @using (Html.BeginForm())
 {
@@ -21,52 +20,47 @@
     <p>
         <input type="submit" value="Submit" />
     </p>
-
-        foreach (var parent in Model.GoogleDorkParentViewModels)
-{
-    <div>@parent.Name</div>
-    
-    <table>
-        <tr>
-            <th style="padding: 4px;">
-                Date
-            </th>
-            <th style="padding: 4px;">
-                Title
-            </th>
-            <th style="padding: 4px;">
-                Summary
-            </th>
-            <th style="padding: 4px;">
-                GHDB&nbsp;URL
-            </th>
-        </tr>
-    
-        @foreach (var dork in parent.GoogleDorks)
+ 
+    if (Model.GoogleDorkParentViewModels != null)
+    {
+        foreach (var parent in Model.GoogleDorkParentViewModels.Where(x => x.GoogleDorks.Any()))
         {
-            <tr>
-                <td style="padding: 4px;">
-                    @Html.DisplayFor(x => dork.DiscoveryDate)  
-                </td>
-                <td style="padding: 4px;">
-                    <a href="@dork.GoogleUrl" target="googleLink">Google&nbsp;Link</a>  
-                </td>
-                <td style="padding: 4px;">
-                    @dork.Summary
-                </td>
-                <td style="padding: 4px;">
-                    <a href="@dork.GhdbUrl" target="ghdbLink">Ghdb&nbsp;Link</a>
-                </td>
-            </tr>
+            <div>@parent.Name</div>
+            <table>
+                <tr>
+                    <th style="padding: 4px;">
+                        Date
+                    </th>
+                    <th style="padding: 4px;">
+                        Title
+                    </th>
+                    <th style="padding: 4px;">
+                        Summary
+                    </th>
+                    <th style="padding: 4px;">
+                        GHDB&nbsp;URL
+                    </th>
+                </tr>
+    
+                @foreach (var dork in parent.GoogleDorks)
+                {
+                    <tr>
+                        <td style="padding: 4px;">
+                            @Html.DisplayFor(x => dork.DiscoveryDate)  
+                        </td>
+                        <td style="padding: 4px;">
+                            <a href="@dork.GoogleUrl" target="googleLink">Google&nbsp;Link</a>
+                        </td>
+                        <td style="padding: 4px;">
+                            @HttpUtility.HtmlDecode(dork.Summary)
+                        </td>
+                        <td style="padding: 4px;">
+                            <a href="@dork.GhdbUrl" target="ghdbLink">Ghdb&nbsp;Link</a>
+                        </td>
+                    </tr>
+                }
+            </table>
         }
-    </table>
-}
-
-
+    } 
 }
 <br/><br/>
-
-
-
-
-

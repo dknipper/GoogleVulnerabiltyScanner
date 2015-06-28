@@ -1,5 +1,6 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using DorkWeb.Models;
@@ -12,6 +13,13 @@ namespace DorkWeb.Controllers
         public ActionResult Index()
         {
             var dorkMaster = new GoogleDorkMasterViewModel();
+
+            using (var proxy = new DorkServiceClient(AppSettings.Config.DorkServiceActiveEndpoint))
+            {
+                var googleDorkParents = Mapper.Map<List<GoogleDorkParentViewModel>>(proxy.GetGoogleDorkParents(GoogleDorkParentSort.Name));
+                dorkMaster.GoogleDorkParentList = new MultiSelectList(googleDorkParents, "ID", "Name", null);
+            }
+
             return View("Index", dorkMaster);
         }
 
@@ -20,7 +28,8 @@ namespace DorkWeb.Controllers
         {
             using (var proxy = new DorkServiceClient(AppSettings.Config.DorkServiceActiveEndpoint))
             {
-                dorkMaster.GoogleDorkParentViewModels = Mapper.Map<List<GoogleDorkParentViewModel>>(proxy.SearchGoogleDorks(dorkMaster.SiteToSearch, dorkMaster.Keywords, dorkMaster.GoogleDorkParentIds));
+                var googleDorkParentIds = dorkMaster.GoogleDorkParentValues.Select(parent => Convert.ToInt32(parent)).ToList();
+                dorkMaster.GoogleDorkParentViewModels = Mapper.Map<List<GoogleDorkParentViewModel>>(proxy.SearchGoogleDorks(dorkMaster.SiteToSearch, dorkMaster.Keywords, googleDorkParentIds));
                 foreach (var parent in dorkMaster.GoogleDorkParentViewModels)
                 {
                     foreach (var dork in parent.GoogleDorks)
