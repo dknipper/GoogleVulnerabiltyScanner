@@ -8,7 +8,6 @@ namespace DorkWindowsApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;

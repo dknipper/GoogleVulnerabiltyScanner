@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AutoMapper;
-using DorkBusiness.Google.Entities;
 using DorkWindowsApp.ViewModels;
 
 namespace DorkWindowsApp
@@ -13,16 +11,9 @@ namespace DorkWindowsApp
 
         public MainWindow()
         {
-            Mapper.CreateMap<GoogleDorkViewModel, GoogleDork>();
-            Mapper.CreateMap<GoogleDork, GoogleDorkViewModel>();
-
-            Mapper.CreateMap<GoogleDorkParentViewModel, GoogleDorkParent>();
-            Mapper.CreateMap<GoogleDorkParent, GoogleDorkParentViewModel>();
-
             InitializeComponent();
             ViewModelDataContext = new GoogleDorkMasterViewModel();
             DataContext = ViewModelDataContext;
-            //tv.ItemsSource = ViewModelDataContext.GoogleDorkParentViewModels;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -47,12 +38,6 @@ namespace DorkWindowsApp
             }
         }
 
-        private void txtUrl_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                WbSample.Navigate(TxtUrl.Text);
-        }
-
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ((WbSample != null) && (WbSample.CanGoBack));
@@ -71,16 +56,6 @@ namespace DorkWindowsApp
         private void BrowseForward_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             WbSample.GoForward();
-        }
-
-        private void GoToPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void GoToPage_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            WbSample.Navigate(TxtUrl.Text);
         }
 
         private void ExitCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)

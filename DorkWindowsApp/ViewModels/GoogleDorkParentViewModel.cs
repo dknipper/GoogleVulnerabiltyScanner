@@ -6,9 +6,9 @@ namespace DorkWindowsApp.ViewModels
     {
         private string _name;
         private int _id;
-        private ObservableCollection<GoogleDorkViewModel> _googleDorks;
         private bool _isSelected;
         private bool _isExpanded;
+        private ObservableCollection<GoogleDorkViewModel> _googleDorks;
 
         public string Name
         {
@@ -18,10 +18,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_name == value)
-                {
-                    return;
-                }
+                if (_name == value){return;}
                 _name = value;
                 NotifyPropertyChanged();
             }
@@ -35,10 +32,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_id == value)
-                {
-                    return;
-                }
+                if (_id == value){return;}
                 _id = value;
                 NotifyPropertyChanged();
             }
@@ -52,10 +46,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_googleDorks == value)
-                {
-                    return;
-                }
+                if (_googleDorks == value){return;}
                 _googleDorks = value;
                 NotifyPropertyChanged();
             }
@@ -69,10 +60,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (value == _isSelected)
-                {
-                    return;
-                }
+                if (value == _isSelected){return;}
                 _isSelected = value;
                 NotifyPropertyChanged();
             }
@@ -86,10 +74,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (value == _isExpanded)
-                {
-                    return;
-                }
+                if (value == _isExpanded){return;}
                 _isExpanded = value;
                 NotifyPropertyChanged();
             }

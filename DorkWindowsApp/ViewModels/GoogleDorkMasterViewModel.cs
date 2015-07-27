@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using AutoMapper;
 using DorkBusiness.Google.Entities;
+using Microsoft.Practices.Prism.Commands;
 
 namespace DorkWindowsApp.ViewModels
 {
@@ -13,8 +14,12 @@ namespace DorkWindowsApp.ViewModels
         private ObservableCollection<int> _googleDorkParentIds;
         private string _siteToSearch;
         private string _keywords;
+        private string _browserUrl;
+        private string _navigationBarUrl;
+        private readonly GoogleDorkMaster _googleDorkMaster;
 
-        private GoogleDorkMaster _googleDorkMaster;
+        public DelegateCommand UpdateBrowserUrlCommand { get; private set; }
+        public DelegateCommand<string> UpdateAllUrlsCommand { get; private set; }
 
         public ObservableCollection<GoogleDorkParentViewModel> GoogleDorkParentViewModels
         {
@@ -24,10 +29,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_googleDorkParentViewModels == value)
-                {
-                    return;
-                }
+                if (_googleDorkParentViewModels == value){return;}
                 _googleDorkParentViewModels = value;
                 NotifyPropertyChanged();
             }
@@ -41,10 +43,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_googleDorkParentValues == value)
-                {
-                    return;
-                }
+                if (_googleDorkParentValues == value){return;}
                 _googleDorkParentValues = value;
                 NotifyPropertyChanged();
             }
@@ -58,10 +57,7 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_googleDorkParentIds == value)
-                {
-                    return;
-                }
+                if (_googleDorkParentIds == value){return;}
                 _googleDorkParentIds = value;
                 NotifyPropertyChanged();
             }
@@ -75,12 +71,37 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_siteToSearch == value)
-                {
-                    return;
-                }
+                if (_siteToSearch == value){return;}
                 _siteToSearch = value;
                 RepopulateGoogleDorkParentds();
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string BrowserUrl
+        {
+            get
+            {
+                return _browserUrl;
+            }
+            set
+            {
+                if (_browserUrl == value){return;}
+                _browserUrl = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string NavigationBarUrl
+        {
+            get
+            {
+                return _navigationBarUrl;
+            }
+            set
+            {
+                if (_navigationBarUrl == value){return;}
+                _navigationBarUrl = value;
                 NotifyPropertyChanged();
             }
         }
@@ -93,14 +114,20 @@ namespace DorkWindowsApp.ViewModels
             }
             set
             {
-                if (_keywords == value)
-                {
-                    return;
-                }
+                if (_keywords == value){return;}
                 _keywords = value;
                 RepopulateGoogleDorkParentds();
                 NotifyPropertyChanged();
             }
+        }
+
+        public GoogleDorkMasterViewModel()
+        {
+            _browserUrl = _navigationBarUrl = "http://www.google.com/";
+            UpdateBrowserUrlCommand = new DelegateCommand(UpdateBrowserUrl, CanUpdateBrowserUrl);
+            UpdateAllUrlsCommand = new DelegateCommand<string>(UpdateAllUrls, CanUpdateAllUrls);
+            _googleDorkMaster = new GoogleDorkMaster();
+            _googleDorkParentViewModels = Mapper.Map<ObservableCollection<GoogleDorkParentViewModel>>(_googleDorkMaster.SearchGoogleDorks(_siteToSearch, _keywords));
         }
 
         private void RepopulateGoogleDorkParentds()
@@ -108,7 +135,8 @@ namespace DorkWindowsApp.ViewModels
             var searchResults = _googleDorkMaster.SearchGoogleDorks(SiteToSearch, Keywords, GoogleDorkParentViewModels.Select(x => x.Id).ToList());
             foreach (var googleDorkParent in GoogleDorkParentViewModels)
             {
-                var gp = searchResults.FirstOrDefault(x => x.Id == googleDorkParent.Id);
+                var parent = googleDorkParent;
+                var gp = searchResults.FirstOrDefault(x => x.Id == parent.Id);
                 if (gp != null)
                 {
                     googleDorkParent.GoogleDorks = Mapper.Map<ObservableCollection<GoogleDorkViewModel>>(gp.GoogleDorks);
@@ -116,10 +144,25 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
-        public GoogleDorkMasterViewModel()
+        private void UpdateBrowserUrl()
         {
-            _googleDorkMaster = new GoogleDorkMaster();
-            _googleDorkParentViewModels = Mapper.Map<ObservableCollection<GoogleDorkParentViewModel>>(_googleDorkMaster.SearchGoogleDorks(_siteToSearch, _keywords));
+            BrowserUrl = NavigationBarUrl;
         }
+
+        private void UpdateAllUrls(string url)
+        {
+            NavigationBarUrl = url;
+            BrowserUrl = url;
+        }
+
+        private bool CanUpdateBrowserUrl()
+        {
+            return true;
+        }
+
+        private bool CanUpdateAllUrls(string url)
+        {
+            return true;
+        } 
     }
 }

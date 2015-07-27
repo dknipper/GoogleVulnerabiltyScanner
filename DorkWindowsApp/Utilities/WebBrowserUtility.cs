@@ -9,23 +9,23 @@ namespace DorkWindowsApp.Utilities
         public static readonly DependencyProperty BindableSourceProperty =
             DependencyProperty.RegisterAttached
                 ("BindableSource",
-                    typeof (string),
-                    typeof (WebBrowserUtility),
+                    typeof(string),
+                    typeof(WebBrowserUtility),
                     new UIPropertyMetadata(null, BindableSourcePropertyChanged));
 
-        public static string GetBindableSource(DependencyObject obj)
+        public static string GetBindableSource(DependencyObject dependencyObject)
         {
-            return (string) obj.GetValue(BindableSourceProperty);
+            return (string)dependencyObject.GetValue(BindableSourceProperty);
         }
 
-        public static void SetBindableSource(DependencyObject obj, string value)
+        public static void SetBindableSource(DependencyObject dependencyObject, string value)
         {
-            obj.SetValue(BindableSourceProperty, value);
+            dependencyObject.SetValue(BindableSourceProperty, value);
         }
 
-        public static void BindableSourcePropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        public static void BindableSourcePropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            var browser = o as WebBrowser;
+            var browser = dependencyObject as WebBrowser;
             if (browser == null)
             {
                 return;
