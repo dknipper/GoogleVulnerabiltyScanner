@@ -11,3 +11,16 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.Prop
 C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.csproj.GenerateResource.Cache
 C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.exe
 C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkBusiness.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\HtmlAgilityPack.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkDataAccess.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\EntityFramework.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\System.Linq.Dynamic.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkBusiness.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\AutoMapper.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\AutoMapper.Net4.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\AutoMapper.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\AutoMapper.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\bin\Debug\AutoMapper.Net4.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkWindowsApp\obj\Debug\DorkWindowsApp_MarkupCompile.lref

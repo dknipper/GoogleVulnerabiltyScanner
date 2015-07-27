@@ -1,23 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using DorkBusiness.Google.Enumerations;
 using DorkBusiness.Utilities;
 using DorkDataAccess;
 using HtmlAgilityPack;
-using GoogleDork = DorkBusiness.Google.Entities.GoogleDork;
-using GoogleDorkParent = DorkBusiness.Google.Entities.GoogleDorkParent;
-using System.Linq.Dynamic;
-using DorkBusiness.Google.Entities;
 
-namespace DorkBusiness.Google.Utilities
+namespace DorkBusiness.Google.Entities
 {
-    public class GoogleDorkUtilities
+    public class GoogleDorkSync
     {
         public delegate void GoogleDorkSyncProgressChangeHandler(object sender, GoogleDorkSyncProgressChangeEventArgs e);
         public event GoogleDorkSyncProgressChangeHandler OnGoogleDorkSyncProgressChange;
+
+        public int GetGoogleDorkTotals()
+        {
+            var client = new DorkWebClient();
+            var rtrn = 0;
+            var downloadString = client.DownloadString(string.Format("{0}ghdb/", AppSettings.Config.GhdbHomePage));
+
+            var matchCollection = Regex.Matches(downloadString, @"\([^\d]*(\d+)[^\d]* entries\)");
+
+            // ReSharper disable once LoopCanBePartlyConvertedToQuery
+            foreach (Match match in matchCollection)
+            {
+                var matchString = new string(match.ToString().Where(char.IsDigit).ToArray());
+                int tryMe;
+                int.TryParse(matchString, out tryMe);
+                rtrn += tryMe;
+            }
+            return rtrn;
+        }
 
         public List<GoogleDorkParent> GetGoogleDorksFromGhdb()
         {
@@ -30,7 +46,7 @@ namespace DorkBusiness.Google.Utilities
 
             var processedDorks = 0;
 
-            var googleDorkParents = GetGoogleDorkParentsFromDatabase(GoogleDorkParentSort.Id);
+            var googleDorkParents = new GoogleDorkMaster().GetGoogleDorkParents(GoogleDorkParentSort.Id);
             var client = new DorkWebClient();
 
             foreach (var googleDorkParent in googleDorkParents)
@@ -52,7 +68,7 @@ namespace DorkBusiness.Google.Utilities
                 {
                     continue;
                 }
-                
+
                 var tableRows = table.SelectNodes("./tr");
                 var firstRow = true;
                 foreach (var tr in tableRows)
@@ -90,13 +106,13 @@ namespace DorkBusiness.Google.Utilities
             return googleDorkParents;
         }
 
-        private void ProcessDork(HtmlNode tr, GoogleDorkParent googleDorkParent, DorkWebClient client, int googleDorkTotal, ref int processedDorks)
+        private void ProcessDork(HtmlNode tr, GoogleDorkParent googleDorkParent, WebClient client, int googleDorkTotal, ref int processedDorks)
         {
             var dork =
                 new GoogleDork
-                    {
-                        GoogleDorkParentId = googleDorkParent.Id
-                    };
+                {
+                    GoogleDorkParentId = googleDorkParent.Id
+                };
 
             var currentIndex = 0;
 
@@ -105,7 +121,7 @@ namespace DorkBusiness.Google.Utilities
             {
                 return;
             }
-            
+
             foreach (var td in tableRowCells)
             {
                 switch (currentIndex)
@@ -164,14 +180,14 @@ namespace DorkBusiness.Google.Utilities
             if (string.IsNullOrEmpty(dork.GoogleUrl))
             {
                 return;
-            } 
-            
+            }
+
             dork.GoogleUrl = dork.GoogleUrl.Replace("q=", "q=??keywords?? ");
             if ((!dork.GoogleUrl.Contains("site:") && dork.GoogleUrl.Contains("q=")) == false)
             {
                 return;
             }
-            
+
             dork.GoogleUrl = dork.GoogleUrl.Replace("q=", "q=(");
             var indexOfq = dork.GoogleUrl.IndexOf("q=(", StringComparison.OrdinalIgnoreCase);
 
@@ -197,7 +213,7 @@ namespace DorkBusiness.Google.Utilities
                     };
 
             var goodParameters =
-                new Dictionary<string,string>
+                new Dictionary<string, string>
                     {
                         {"nfpr", "1"},{"pws", "0"},{"complete", "0"},{"safe", "off"}
                     };
@@ -222,66 +238,18 @@ namespace DorkBusiness.Google.Utilities
 
             var processedItem =
                 new GoogleDorkSyncProgress
-                    {
-                        Date = dork.DiscoveryDate,
-                        GhdbUrl = dork.GhdbUrl,
-                        GoogleDorkParentName = googleDorkParent.Name,
-                        ProcessedNumber = processedDorks,
-                        Summary = dork.Summary,
-                        Title = dork.GoogleUrl,
-                        PercentageComplete = ((processedDorks/(double)googleDorkTotal)*100.00)
-                    };
+                {
+                    Date = dork.DiscoveryDate,
+                    GhdbUrl = dork.GhdbUrl,
+                    GoogleDorkParentName = googleDorkParent.Name,
+                    ProcessedNumber = processedDorks,
+                    Summary = dork.Summary,
+                    Title = dork.GoogleUrl,
+                    PercentageComplete = ((processedDorks / (double)googleDorkTotal) * 100.00)
+                };
 
             var args = new GoogleDorkSyncProgressChangeEventArgs(processedItem);
             OnGoogleDorkSyncProgressChange(this, args);
-        }
-
-        public List<GoogleDorkParent> GetGoogleDorksFromDatabase(string site)
-        {
-            var googleDorkParents = new List<GoogleDorkParent>();
-
-            if (string.IsNullOrEmpty(site))
-            {
-                return googleDorkParents;
-            }
-
-            using (var context = new DorkDatabaseContext())
-            {
-                var fullGoogleDorks = context.FullGoogleDorks.OrderByDescending(x => x.GoogleDorkParentId).ThenByDescending(x => x.DiscoveryDate);
-
-                var currentId = -1;
-                var googleDorkParent = new GoogleDorkParent();
-                foreach (var fullGoogleDork in fullGoogleDorks)
-                {
-                    var newId = fullGoogleDork.GoogleDorkParentId;
-
-                    if (currentId != newId)
-                    {
-                        currentId = newId;
-                        googleDorkParent =
-                            new GoogleDorkParent
-                            {
-                                Id = newId,
-                                Name = fullGoogleDork.GoogleDorkParentName,
-                                GoogleDorks = new List<GoogleDork>()
-                            };
-
-                        googleDorkParents.Add(googleDorkParent);
-                    }
-
-                    googleDorkParent.GoogleDorks.Add(
-                        new GoogleDork
-                        {
-                            DiscoveryDate = fullGoogleDork.DiscoveryDate ?? default(DateTime),
-                            GhdbUrl = fullGoogleDork.GhdbUrl,
-                            GoogleDorkParentId = fullGoogleDork.GoogleDorkParentId,
-                            Summary = fullGoogleDork.Summary,
-                            GoogleUrl = fullGoogleDork.GoogleUrl.Replace(" ??site??", site)
-                        });
-                }
-            }
-
-            return googleDorkParents;
         }
 
         public void SyncGoogleDorks()
@@ -299,16 +267,40 @@ namespace DorkBusiness.Google.Utilities
                     {
                         var newGoogleDorkDbRecord =
                             new DorkDataAccess.GoogleDork
-                                {
-                                    DiscoveryDate = googleDork.DiscoveryDate,
-                                    GhdbUrl = googleDork.GhdbUrl,
-                                    GoogleDorkParentId = googleDorkParent.Id,
-                                    GoogleUrl = googleDork.GoogleUrl,
-                                    Summary = googleDork.Summary
-                                };
+                            {
+                                DiscoveryDate = googleDork.DiscoveryDate,
+                                GhdbUrl = googleDork.GhdbUrl,
+                                GoogleDorkParentId = googleDorkParent.Id,
+                                GoogleUrl = googleDork.GoogleUrl,
+                                Summary = googleDork.Summary
+                            };
 
                         context.GoogleDorks.Add(newGoogleDorkDbRecord);
                     }
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public void SyncGoogleDorkParents()
+        {
+            var googleDorkParents = GetGoogleDorkParentsFromGhdb();
+
+            using (var context = new DorkDatabaseContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM GoogleDorkParent");
+
+                // ReSharper disable once LoopCanBePartlyConvertedToQuery
+                foreach (var googleDorkParent in googleDorkParents)
+                {
+                    var newGoogleDorkDbRecord =
+                        new DorkDataAccess.GoogleDorkParent
+                        {
+                            Id = googleDorkParent.Id,
+                            Name = googleDorkParent.Name
+                        };
+
+                    context.GoogleDorkParents.Add(newGoogleDorkDbRecord);
                 }
                 context.SaveChanges();
             }
@@ -350,127 +342,12 @@ namespace DorkBusiness.Google.Utilities
 
                 rtrn.Add(
                     new GoogleDorkParent
-                        {
-                            Id = index,
-                            Name = HttpUtility.HtmlDecode(node.InnerText)
-                        });
-            }
-
-            return rtrn;
-        }
-
-        public List<GoogleDorkParent> GetGoogleDorkParentsFromDatabase(GoogleDorkParentSort googleDorkParentSort)
-        {
-            var googleDorkParents = new List<GoogleDorkParent>();
-
-            using (var context = new DorkDatabaseContext())
-            {
-                var googleDorksFromDb = context.GoogleDorkParents.OrderBy(googleDorkParentSort.ToString());
-                foreach (var googleDorkFromDb in googleDorksFromDb)
-                {
-                    googleDorkParents.Add(
-                        new GoogleDorkParent
-                            {
-                                Id = googleDorkFromDb.Id,
-                                Name = googleDorkFromDb.Name,
-                                GoogleDorks = new List<GoogleDork>()
-                            });
-                }
-            }
-
-            return googleDorkParents;
-        }
-
-        public void SyncGoogleDorkParents()
-        {
-            var googleDorkParents = GetGoogleDorkParentsFromGhdb();
-
-            using (var context = new DorkDatabaseContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM GoogleDorkParent");
-
-                // ReSharper disable once LoopCanBePartlyConvertedToQuery
-                foreach (var googleDorkParent in googleDorkParents)
-                {
-                    var newGoogleDorkDbRecord =
-                        new DorkDataAccess.GoogleDorkParent
-                            {
-                                Id = googleDorkParent.Id,
-                                Name = googleDorkParent.Name
-                            };
-
-                    context.GoogleDorkParents.Add(newGoogleDorkDbRecord);
-                }
-                context.SaveChanges();
-            }
-        }
-
-        public List<GoogleDorkParent> SearchGoogleDorks(string site, string keywords, List<int> googleDorkParentIds)
-        {
-            googleDorkParentIds = googleDorkParentIds ?? new List<int>();
-            googleDorkParentIds.Add(-1);
-
-            var googleDorkParents = new List<GoogleDorkParent>();
-
-            using (var context = new DorkDatabaseContext())
-            {
-                var fullGoogleDorks =
-                    from t in context.FullGoogleDorks
-                    where googleDorkParentIds.Contains(t.GoogleDorkParentId)
-                    orderby t.GoogleDorkParentId descending, t.DiscoveryDate descending
-                    select t;
-
-                var currentId = -1;
-                var googleDorkParent = new GoogleDorkParent();
-
-                foreach (var fullGoogleDork in fullGoogleDorks)
-                {
-                    var newId = fullGoogleDork.GoogleDorkParentId;
-                    if (currentId != newId)
                     {
-                        currentId = newId;
-                        googleDorkParent =
-                            new GoogleDorkParent
-                                {
-                                    Id = newId,
-                                    Name = fullGoogleDork.GoogleDorkParentName,
-                                    GoogleDorks = new List<GoogleDork>()
-                                };
-
-                        googleDorkParents.Add(googleDorkParent);
-                    }
-
-                    var googleUrl = (!string.IsNullOrEmpty(site)) ? fullGoogleDork.GoogleUrl.Replace("??site??", site) : fullGoogleDork.GoogleUrl.Replace("site:??site??", string.Empty);
-                    googleUrl = (!string.IsNullOrEmpty(keywords)) ? googleUrl.Replace("??keywords??", keywords) : googleUrl.Replace("??keywords?? ", string.Empty);
-
-                    googleDorkParent.GoogleDorks.Add(
-                        new GoogleDork
-                            {
-                                DiscoveryDate = fullGoogleDork.DiscoveryDate ?? default(DateTime),
-                                GhdbUrl = fullGoogleDork.GhdbUrl,
-                                GoogleDorkParentId = fullGoogleDork.GoogleDorkParentId,
-                                Summary = fullGoogleDork.Summary,
-                                GoogleUrl = googleUrl
-                            });
-                }
+                        Id = index,
+                        Name = HttpUtility.HtmlDecode(node.InnerText)
+                    });
             }
-            return googleDorkParents;
-        }
 
-        public int GetGoogleDorkTotals()
-        {
-            var client = new DorkWebClient();
-            var rtrn = 0;
-            var downloadString = client.DownloadString(string.Format("{0}ghdb/", AppSettings.Config.GhdbHomePage));
-
-            var matchCollection = Regex.Matches(downloadString, @"\([^\d]*(\d+)[^\d]* entries\)");
-            foreach (Match match in matchCollection)
-            {
-                var matchString = new string(match.ToString().Where(char.IsDigit).ToArray());
-                int tryMe;
-                int.TryParse(matchString, out tryMe);
-                rtrn += tryMe;
-            }
             return rtrn;
         }
     }

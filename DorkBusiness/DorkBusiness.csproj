@@ -58,8 +58,9 @@
     <Compile Include="Google\Entities\GoogleDorkSyncProgress.cs" />
     <Compile Include="Google\Enumerations\GoogleDorkColumnIndex.cs" />
     <Compile Include="Google\Entities\GoogleDorkSyncProgressChangeEventArgs.cs" />
+    <Compile Include="Google\Entities\GoogleDorkSync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Google\Utilities\GoogleDorkUtilities.cs" />
+    <Compile Include="Google\Entities\GoogleDorkMaster.cs" />
     <Compile Include="Utilities\DorkWebClient.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using DorkBusiness.Google.Utilities;
+using DorkBusiness.Google.Entities;
 using DorkServices.DataContracts;
 using DorkServices.ServiceBehaviors;
 using DorkServices.ServiceInterfaces;
+using GoogleDorkParent = DorkServices.DataContracts.GoogleDorkParent;
 
 namespace DorkServices.Services
 {
@@ -12,21 +13,18 @@ namespace DorkServices.Services
     {
         public List<GoogleDorkParent> GetGoogleDorks(string site)
         {
-            var googleDorkUtilities = new GoogleDorkUtilities();
-            return Mapper.Map<List<GoogleDorkParent>>(googleDorkUtilities.GetGoogleDorksFromDatabase(site));
+            return Mapper.Map<List<GoogleDorkParent>>(new GoogleDorkMaster().GetGoogleDorksForSite(site));
         }
 
         public List<GoogleDorkParent> GetGoogleDorkParents(GoogleDorkParentSort googleDorkParentSort)
         {
-            var googleDorkUtilities = new GoogleDorkUtilities();
             var sort = (DorkBusiness.Google.Enumerations.GoogleDorkParentSort) googleDorkParentSort;
-            return Mapper.Map<List<GoogleDorkParent>>(googleDorkUtilities.GetGoogleDorkParentsFromDatabase(sort));
+            return Mapper.Map<List<GoogleDorkParent>>(new GoogleDorkMaster().GetGoogleDorkParents(sort));
         }
 
         public List<GoogleDorkParent> SearchGoogleDorks(string site, string keywords, List<int> googleDorkParentsIds)
         {
-            var googleDorkUtilities = new GoogleDorkUtilities();
-            return Mapper.Map<List<GoogleDorkParent>>(googleDorkUtilities.SearchGoogleDorks(site, keywords, googleDorkParentsIds));
+            return Mapper.Map<List<GoogleDorkParent>>(new GoogleDorkMaster().SearchGoogleDorks(site, keywords, googleDorkParentsIds));
         }
     }
 }

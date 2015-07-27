@@ -1,81 +1,96 @@
-﻿using System;
-using System.ComponentModel;
-using System.Net;
-using System.ServiceModel;
-using System.Threading;
-using System.Windows;
-using DorkWindowsApp.DorkSyncServiceServiceReference;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using AutoMapper;
+using DorkBusiness.Google.Entities;
+using DorkWindowsApp.ViewModels;
 
 namespace DorkWindowsApp
 {
     public partial class MainWindow
     {
-        private GoogleDorkSyncCallback _googleDorkSyncCallback;
+        public GoogleDorkMasterViewModel ViewModelDataContext;
 
         public MainWindow()
         {
+            Mapper.CreateMap<GoogleDorkViewModel, GoogleDork>();
+            Mapper.CreateMap<GoogleDork, GoogleDorkViewModel>();
+
+            Mapper.CreateMap<GoogleDorkParentViewModel, GoogleDorkParent>();
+            Mapper.CreateMap<GoogleDorkParent, GoogleDorkParentViewModel>();
+
             InitializeComponent();
+            ViewModelDataContext = new GoogleDorkMasterViewModel();
+            DataContext = ViewModelDataContext;
+            //tv.ItemsSource = ViewModelDataContext.GoogleDorkParentViewModels;
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as System.Windows.Controls.Button;
-            if (button != null)
+            if (Rect.Visibility == Visibility.Collapsed)
             {
-                button.IsEnabled = false;
-                button.Content = "Syncing!";
-            }
-
-            _googleDorkSyncCallback = new GoogleDorkSyncCallback();
-
-            var ctx = new InstanceContext(_googleDorkSyncCallback);
-            var dorkSyncProxy = new DorkSyncServiceClient(ctx);
-
-            if (dorkSyncProxy.ClientCredentials != null)
-            {
-                dorkSyncProxy.ClientCredentials.Windows.ClientCredential = new NetworkCredential(AppSettings.Config.ServiceUser, AppSettings.Config.ServicePassword);
-                dorkSyncProxy.SyncGoogleDorks();
-            }
-
-            var worker = 
-                new BackgroundWorker
+                Rect.Visibility = Visibility.Visible;
+                var button = sender as Button;
+                if (button != null)
                 {
-                    WorkerReportsProgress = true
-                };
-
-            worker.DoWork += WorkerDoWork;
-            worker.ProgressChanged += WorkerProgressChanged;
-            worker.RunWorkerAsync();
-        }
-
-        void WorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            var worker = sender as BackgroundWorker;
-            if (worker == null)
-            {
-                return;
-            }
-            while (true)
-            {
-                if (_googleDorkSyncCallback == null || _googleDorkSyncCallback.GoogleDorkSyncProgress == null || _googleDorkSyncCallback.GoogleDorkSyncProgress.PercentageComplete.Equals(100))
-                {
-                    worker.ReportProgress(100);
-                    break;
+                    button.Content = "<";
                 }
-                worker.ReportProgress(Convert.ToInt32(_googleDorkSyncCallback.GoogleDorkSyncProgress.PercentageComplete));
-                Thread.Sleep(100);
             }
-            SyncButton.IsEnabled = true;
-            SyncButton.Content = "Start!";
+            else
+            {
+                Rect.Visibility = Visibility.Collapsed;
+                var button = sender as Button;
+                if (button != null)
+                {
+                    button.Content = ">";
+                }
+            }
         }
 
-        void WorkerProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void txtUrl_KeyUp(object sender, KeyEventArgs e)
         {
-            ProcessedTotal.Content = string.Concat("Processed: ", _googleDorkSyncCallback.GoogleDorkSyncProgress.ProcessedNumber);
-            DorkParent.Content = string.Concat("Parent:    ", _googleDorkSyncCallback.GoogleDorkSyncProgress.GoogleDorkParentName);
-            GhdbUrl.Content = string.Concat("GHDB Url:  ", _googleDorkSyncCallback.GoogleDorkSyncProgress.GhdbUrl);
-            GoogleUrl.Content = string.Concat("Google URL:  ", _googleDorkSyncCallback.GoogleDorkSyncProgress.Title);
-            PbStatus.Value = e.ProgressPercentage;
+            if (e.Key == Key.Enter)
+                WbSample.Navigate(TxtUrl.Text);
+        }
+
+        private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ((WbSample != null) && (WbSample.CanGoBack));
+        }
+
+        private void BrowseBack_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            WbSample.GoBack();
+        }
+
+        private void BrowseForward_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ((WbSample != null) && (WbSample.CanGoForward));
+        }
+
+        private void BrowseForward_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            WbSample.GoForward();
+        }
+
+        private void GoToPage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void GoToPage_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            WbSample.Navigate(TxtUrl.Text);
+        }
+
+        private void ExitCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ExitCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

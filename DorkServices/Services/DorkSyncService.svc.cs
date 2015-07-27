@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using AutoMapper;
 using DorkBusiness.Google.Entities;
-using DorkBusiness.Google.Utilities;
 using DorkServices.ServiceBehaviors;
 using DorkServices.ServiceInterfaces;
 
@@ -23,7 +22,7 @@ namespace DorkServices.Services
 
         public void ServiceAction()
         {
-            var dorkParent = new GoogleDorkUtilities();
+            var dorkParent = new GoogleDorkSync();
             dorkParent.OnGoogleDorkSyncProgressChange += GoogleDorkSyncProgressChange;
             dorkParent.SyncGoogleDorkParents();
             dorkParent.SyncGoogleDorks();

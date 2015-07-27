@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -57,12 +63,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings\Config.cs" />
-    <Compile Include="GoogleDorkSyncCallback.cs" />
-    <Compile Include="Service References\DorkSyncServiceServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\CustomCommands.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Utilities\Class1.cs" />
+    <Compile Include="ViewModels\GoogleDorkMasterViewModel.cs" />
+    <Compile Include="ViewModels\GoogleDorkParentViewModel.cs" />
+    <Compile Include="ViewModels\GoogleDorkViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,40 +106,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\DorkSyncServiceServiceReference\DorkSyncService.wsdl" />
-    <None Include="Service References\DorkSyncServiceServiceReference\DorkSyncService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DorkSyncServiceServiceReference\DorkSyncService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DorkSyncServiceServiceReference\DorkSyncService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\DorkSyncServiceServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DorkSyncServiceServiceReference\DorkSyncService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DorkSyncServiceServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DorkSyncServiceServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\DorkSyncServiceServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\DorkBusiness\DorkBusiness.csproj">
+      <Project>{6a953725-db7c-47cc-bd68-a8063a9d5732}</Project>
+      <Name>DorkBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
