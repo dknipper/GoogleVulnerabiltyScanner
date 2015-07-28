@@ -34,3 +34,9 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkDataAccess.pdb
 C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.csprojResolveAssemblyReference.cache
 C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.dll
 C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\obj\Debug\DorkServices.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkWindowsApp.exe
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\Microsoft.Practices.Prism.Mvvm.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\Microsoft.Practices.Prism.SharedInterfaces.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\DorkWindowsApp.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\Microsoft.Practices.Prism.Mvvm.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkServices\bin\Microsoft.Practices.Prism.SharedInterfaces.xml

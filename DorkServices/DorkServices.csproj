@@ -105,6 +105,10 @@
       <Project>{6a953725-db7c-47cc-bd68-a8063a9d5732}</Project>
       <Name>DorkBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DorkWindowsApp\DorkWindowsApp.csproj">
+      <Project>{0ECF14EE-B073-43C3-8B57-E941C5063FDE}</Project>
+      <Name>DorkWindowsApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

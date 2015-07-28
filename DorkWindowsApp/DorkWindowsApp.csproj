@@ -88,11 +88,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Commands\MenuCommands.cs" />
+    <Compile Include="Controls\ScrollingTextBox.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utilities\WebBrowserUtility.cs" />
     <Compile Include="ViewModels\GoogleDorkMasterViewModel.cs" />
     <Compile Include="ViewModels\GoogleDorkParentViewModel.cs" />
+    <Compile Include="ViewModels\GoogleDorkSyncProgressViewModel.cs" />
     <Compile Include="ViewModels\GoogleDorkViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Page Include="MainWindow.xaml">

@@ -18,6 +18,9 @@ namespace DorkWindowsApp
 
             Mapper.CreateMap<GoogleDorkParentViewModel, GoogleDorkParent>();
             Mapper.CreateMap<GoogleDorkParent, GoogleDorkParentViewModel>();
+
+            Mapper.CreateMap<GoogleDorkSyncProgressViewModel, GoogleDorkSyncProgress>();
+            Mapper.CreateMap<GoogleDorkSyncProgress, GoogleDorkSyncProgressViewModel>();
         }
     }
 }

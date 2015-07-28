@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -135,7 +136,7 @@ namespace DorkBusiness.Google.Entities
                         }
                     case ((int)GoogleDorkColumnIndex.Summary):
                         {
-                            dork.Summary = HttpUtility.HtmlDecode(td.InnerText);
+                            dork.Summary = HttpUtility.HtmlDecode(td.InnerText).Replace("\n", string.Empty);
                             break;
                         }
                     case ((int)GoogleDorkColumnIndex.Link):
@@ -147,7 +148,7 @@ namespace DorkBusiness.Google.Entities
                                 var linkAttribute = link.Attributes.FirstOrDefault(x => x.Name.ToLower() == "href");
                                 if (linkAttribute != null)
                                 {
-                                    dork.GhdbUrl = HttpUtility.HtmlDecode(string.Format("{0}{1}", AppSettings.Config.GhdbHomePage, linkAttribute.Value.TrimStart('/')));
+                                    dork.GhdbUrl = HttpUtility.HtmlDecode(string.Format("{0}{1}", AppSettings.Config.GhdbHomePage, linkAttribute.Value.TrimStart('/'))).Replace(Environment.NewLine, string.Empty);
                                 }
                             }
                             break;
@@ -221,7 +222,7 @@ namespace DorkBusiness.Google.Entities
             dorkParams = QueryString.RemoveParameters(dorkParams, badParameters);
             dorkParams = QueryString.AddParameters(dorkParams, goodParameters);
 
-            dork.GoogleUrl = string.Format("{0}://{1}{2}?{3}", dorkUri.Scheme, dorkUri.Authority, dorkUri.AbsolutePath, HttpUtility.UrlDecode(dorkParams.ToString()));
+            dork.GoogleUrl = string.Format("{0}://{1}{2}?{3}", dorkUri.Scheme, dorkUri.Authority, dorkUri.AbsolutePath, HttpUtility.UrlDecode(dorkParams.ToString())).Replace(Environment.NewLine, string.Empty);
             var dorkExists = googleDorkParent.GoogleDorks.Any(x => x.GoogleUrl == dork.GoogleUrl);
 
             if (!dorkExists)
@@ -333,18 +334,19 @@ namespace DorkBusiness.Google.Entities
                 }
 
                 int index;
-                Int32.TryParse(cat, out index);
+                int.TryParse(cat, out index);
 
                 if (index == 0)
                 {
                     continue;
                 }
 
+                var textInfo = new CultureInfo("en-US", false).TextInfo;
                 rtrn.Add(
                     new GoogleDorkParent
                     {
                         Id = index,
-                        Name = HttpUtility.HtmlDecode(node.InnerText)
+                        Name = textInfo.ToTitleCase(HttpUtility.HtmlDecode(node.InnerText))
                     });
             }
 
