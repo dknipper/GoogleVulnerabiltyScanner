@@ -3,6 +3,10 @@ Google Hack Database Web Site Scrapper w/ DB updater utility.
 
 https://en.wikipedia.org/wiki/Google_hacking
 
+Database backups: https://github.com/dknipper/GoogleVulnerabiltyScanner/blob/master/DorkDataAccess/DatabaseBackups
+
+Database Scripts: https://github.com/dknipper/GoogleVulnerabiltyScanner/tree/master/DorkDataAccess/Scripts
+
 ---------------------
 
 BE NICE WITH THIS. PLEASE DO NOT USE THIS FOR MALICOUS PURPOSES. USE ONLY AGAINST SITES WITH PERMISSION.
