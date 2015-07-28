@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="DatabaseBackups\Dork.bak" />
     <None Include="DorkDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DorkDataModel.edmx</DependentUpon>
