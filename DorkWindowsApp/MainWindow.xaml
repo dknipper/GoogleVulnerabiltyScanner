@@ -10,11 +10,9 @@
         Title="MainWindow" 
         WindowState="Maximized">
     <Window.CommandBindings>
-        <CommandBinding Command="NavigationCommands.BrowseBack" CanExecute="BrowseBack_CanExecute" Executed="BrowseBack_Executed" />
-        <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
         <CommandBinding Command="commands:MenuCommands.Exit" CanExecute="ExitCommandCanExecute" Executed="ExitCommandExecuted" />
     </Window.CommandBindings>
-    <Grid>
+    <Grid Background="Gray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -27,72 +25,77 @@
                 <MenuItem Command="commands:MenuCommands.Exit" />
             </MenuItem>
         </Menu>
-        <TabControl Grid.Row="1" Grid.Column="0">
+        <TabControl Grid.Row="1" Grid.Column="0" Margin="8, 10, 8, 10">
             <TabItem Header="Browse Dorks">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="0" Grid.Row="0">
-                        <Label Content="Keywords:"/>
-                        <TextBox Text="{Binding Keywords, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Content="Site:"/>
-                        <TextBox Text="{Binding SiteToSearch, UpdateSourceTrigger=PropertyChanged}" />
-                    </StackPanel>
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <WrapPanel Margin="8, 10, 8, 10">
+                            <Label Content="Keywords:" Margin="8, 0, 0, 0"/>
+                            <TextBox Width="125" Text="{Binding Keywords}"/>
+                            <Label Content="Site:" Margin="8, 0, 0, 0"/>
+                            <TextBox Width="125" Text="{Binding SiteToSearch}" />
+                            <Button Command="{Binding RepopulateGoogleDorkParentsCommand}" Margin="8, 0, 0, 0">Search</Button>
+                        </WrapPanel>
+                    </Grid>
                     <Grid Grid.Column="0" Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" x:Name="Rect" VerticalAlignment="Stretch" Visibility="Collapsed">
-                            <TreeView x:Name="Tv" Width="500" Height="{Binding ActualHeight, ElementName=WbSample}" ItemsSource="{Binding GoogleDorkParentViewModels}">
-                                <TreeView.Resources>
-                                    <DataTemplate x:Key="ChildrenDataTemplate">
-                                        <TextBlock Text="{Binding GoogleUrl}">
-                                            <TextBlock.InputBindings>
-                                                <MouseBinding Command="{Binding DataContext.UpdateAllUrlsCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
-                                            </TextBlock.InputBindings>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </TreeView.Resources>
-                                <TreeView.ItemTemplate>
-                                    <HierarchicalDataTemplate ItemsSource="{Binding GoogleDorks}" ItemTemplate="{StaticResource ResourceKey=ChildrenDataTemplate}">
-                                        <Border BorderBrush="BurlyWood" BorderThickness="2">
-                                            <TextBlock Text="{Binding Name}" />
-                                        </Border>
-                                    </HierarchicalDataTemplate>
-                                </TreeView.ItemTemplate>
-                                <TreeView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type TreeViewItem}">
-                                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                                        <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
-                                    </Style>
-                                </TreeView.ItemContainerStyle>
-                            </TreeView>
-                        </Grid>
-                        <Button Grid.Column="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="32" Height="32" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Click="Button_Click" Content="&gt;"/>
-                    </Grid>
-                    <Grid Grid.Column="1" Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <ToolBar Grid.Row="0">
-                            <Button Command="NavigationCommands.BrowseBack" Content="&lt;"/>
-                            <Button Command="NavigationCommands.BrowseForward" Content="&gt;"/>
-                            <Separator />
-                            <TextBox x:Name="TxtUrl" Width="300" Text="{Binding NavigationBarUrl}"/>
-                            <Button Command="{Binding UpdateBrowserUrlCommand}" Content="X"/>
-                        </ToolBar>
-                        <WebBrowser Grid.Row="1" x:Name="WbSample" utilities:WebBrowserUtility.BindableSource="{Binding BrowserUrl}"/>
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" x:Name="Rect" VerticalAlignment="Stretch" Visibility="Collapsed">
+                                <TreeView x:Name="Tv" Width="500" Height="{Binding ActualHeight, ElementName=WbSample}" ItemsSource="{Binding GoogleDorkParentViewModels}">
+                                    <TreeView.Resources>
+                                        <DataTemplate x:Key="ChildrenDataTemplate">
+                                            <TextBlock Text="{Binding GoogleUrl}">
+                                                <TextBlock.InputBindings>
+                                                    <MouseBinding Command="{Binding DataContext.UpdateAllUrlsCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
+                                                </TextBlock.InputBindings>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </TreeView.Resources>
+                                    <TreeView.ItemTemplate>
+                                        <HierarchicalDataTemplate ItemsSource="{Binding GoogleDorks}" ItemTemplate="{StaticResource ResourceKey=ChildrenDataTemplate}">
+                                            <Border BorderBrush="BurlyWood" BorderThickness="2">
+                                                <TextBlock Text="{Binding Name}" />
+                                            </Border>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.ItemTemplate>
+                                    <TreeView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type TreeViewItem}">
+                                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                                        </Style>
+                                    </TreeView.ItemContainerStyle>
+                                </TreeView>
+                            </Grid>
+                            <Button Grid.Column="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="32" Height="32" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Click="Button_Click" Content="&gt;"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <WrapPanel Grid.Row="0">
+                                <Label Content="Url:" />
+                                <Label Content="{Binding NavigationBarUrl}"/>
+                            </WrapPanel>
+                            <WebBrowser Margin="0, 8, 0, 0"  Grid.Row="1" utilities:WebBrowserUtility.BindableSource="{Binding BrowserUrl}"/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>

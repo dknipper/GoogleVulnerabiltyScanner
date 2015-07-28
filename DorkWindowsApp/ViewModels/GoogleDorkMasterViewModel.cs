@@ -19,6 +19,7 @@ namespace DorkWindowsApp.ViewModels
         private readonly GoogleDorkMaster _googleDorkMaster;
 
         public DelegateCommand UpdateBrowserUrlCommand { get; private set; }
+        public DelegateCommand RepopulateGoogleDorkParentsCommand { get; private set; }
         public DelegateCommand<string> UpdateAllUrlsCommand { get; private set; }
 
         public ObservableCollection<GoogleDorkParentViewModel> GoogleDorkParentViewModels
@@ -73,7 +74,6 @@ namespace DorkWindowsApp.ViewModels
             {
                 if (_siteToSearch == value){return;}
                 _siteToSearch = value;
-                RepopulateGoogleDorkParentds();
                 NotifyPropertyChanged();
             }
         }
@@ -116,7 +116,6 @@ namespace DorkWindowsApp.ViewModels
             {
                 if (_keywords == value){return;}
                 _keywords = value;
-                RepopulateGoogleDorkParentds();
                 NotifyPropertyChanged();
             }
         }
@@ -126,11 +125,12 @@ namespace DorkWindowsApp.ViewModels
             _browserUrl = _navigationBarUrl = "http://www.google.com/";
             UpdateBrowserUrlCommand = new DelegateCommand(UpdateBrowserUrl, CanUpdateBrowserUrl);
             UpdateAllUrlsCommand = new DelegateCommand<string>(UpdateAllUrls, CanUpdateAllUrls);
+            RepopulateGoogleDorkParentsCommand = new DelegateCommand(RepopulateGoogleDorkParents, CanRepopulateGoogleDorkParents);
             _googleDorkMaster = new GoogleDorkMaster();
             _googleDorkParentViewModels = Mapper.Map<ObservableCollection<GoogleDorkParentViewModel>>(_googleDorkMaster.SearchGoogleDorks(_siteToSearch, _keywords));
         }
 
-        private void RepopulateGoogleDorkParentds()
+        private void RepopulateGoogleDorkParents()
         {
             var searchResults = _googleDorkMaster.SearchGoogleDorks(SiteToSearch, Keywords, GoogleDorkParentViewModels.Select(x => x.Id).ToList());
             foreach (var googleDorkParent in GoogleDorkParentViewModels)
@@ -163,6 +163,11 @@ namespace DorkWindowsApp.ViewModels
         private bool CanUpdateAllUrls(string url)
         {
             return true;
-        } 
+        }
+
+        private bool CanRepopulateGoogleDorkParents()
+        {
+            return true;
+        }
     }
 }

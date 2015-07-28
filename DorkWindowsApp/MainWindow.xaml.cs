@@ -38,26 +38,6 @@ namespace DorkWindowsApp
             }
         }
 
-        private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = ((WbSample != null) && (WbSample.CanGoBack));
-        }
-
-        private void BrowseBack_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            WbSample.GoBack();
-        }
-
-        private void BrowseForward_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = ((WbSample != null) && (WbSample.CanGoForward));
-        }
-
-        private void BrowseForward_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            WbSample.GoForward();
-        }
-
         private void ExitCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
