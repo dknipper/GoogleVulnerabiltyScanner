@@ -91,8 +91,8 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <WrapPanel Grid.Row="0">
-                                <Label Content="Url:" />
-                                <Label Content="{Binding NavigationBarUrl}"/>
+                                <TextBox Text="Url:" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"/>
+                                <TextBox Text="{Binding NavigationBarUrl, Mode=OneWay}" Background="Transparent" BorderThickness="0"  IsReadOnly="True" TextWrapping="Wrap"/>
                             </WrapPanel>
                             <WebBrowser Margin="0, 8, 0, 0"  Grid.Row="1" utilities:WebBrowserUtility.BindableSource="{Binding BrowserUrl}"/>
                         </Grid>
