@@ -9,8 +9,9 @@
         xmlns:controls="clr-namespace:DorkWindowsApp.Controls"
         x:Class="DorkWindowsApp.MainWindow"
         mc:Ignorable="d"
-        Title="Google Vulnerabilty Scanner" 
-        WindowState="Maximized">
+        Title="Google Dork Scanner" 
+        WindowState="Maximized" 
+        Icon="Google-Chrome-Google-Chrome-Canary.ico">
     <Window.CommandBindings>
         <CommandBinding Command="commands:MenuCommands.Exit" CanExecute="ExitCommandCanExecute" Executed="ExitCommandExecuted" />
     </Window.CommandBindings>
@@ -40,7 +41,7 @@
                             <TextBox Width="125" Text="{Binding Keywords}"/>
                             <Label Content="Site:" Margin="8, 0, 0, 0"/>
                             <TextBox Width="125" Text="{Binding SiteToSearch}" />
-                            <Button Command="{Binding RepopulateGoogleDorkParentsCommand}" Margin="8, 0, 0, 0">Refresh Tree</Button>
+                            <Button Command="{Binding RepopulateGoogleDorkParentsCommand}" Width="150" Margin="8, 0, 0, 0">Refresh Dork Tree</Button>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1">
@@ -57,7 +58,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" x:Name="Rect" VerticalAlignment="Stretch" Visibility="Collapsed">
-                                <TreeView x:Name="Tv" Width="500" Height="{Binding ActualHeight, ElementName=WbSample}" ItemsSource="{Binding GoogleDorkParentViewModels}">
+                                <TreeView Width="500" ItemsSource="{Binding GoogleDorkParentViewModels}">
                                     <TreeView.Resources>
                                         <DataTemplate x:Key="ChildrenDataTemplate">
                                             <TextBlock Text="{Binding GoogleUrl}" ToolTip="{Binding Summary}">
@@ -91,8 +92,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <WrapPanel Grid.Row="0" Grid.Column="0">
-                                <TextBox Text="Url:" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"/>
-                                <TextBox Text="{Binding NavigationBarUrl, Mode=OneWay}" Background="Transparent" BorderThickness="0"  IsReadOnly="True" TextWrapping="Wrap"/>
+                                <TextBox Text="{Binding BrowserUrl}" Background="Transparent" BorderThickness="0"  IsReadOnly="True" TextWrapping="Wrap" FontWeight="ExtraBold"/>
                             </WrapPanel>
                             <WebBrowser Margin="0, 8, 0, 0" Grid.Column="0"  Grid.Row="1" utilities:WebBrowserUtility.BindableSource="{Binding BrowserUrl}"/>
                         </Grid>
@@ -100,7 +100,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Sync Dorks">
-                <Grid Margin="10, 10, 10, 10">
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -112,7 +112,7 @@
                     </Grid.RowDefinitions>
                     <Button Grid.ColumnSpan="2" Grid.Row="0" Width="100" Command="{Binding SyncCommand}">Sync</Button>
                     <Label Grid.Column="0" Margin="10,10,0,10" Grid.Row="1">Progress:</Label>
-                    <ProgressBar Grid.Column="1" Margin="10,10,10,10" Grid.Row="1" Value="{Binding Path=SyncProgress.PercentageComplete}" Maximum="{Binding Path=SyncProgress.MaximumPercentageComplete}" Minimum="{Binding Path=SyncProgress.MinimumPercentageComplete}" ></ProgressBar>
+                    <ProgressBar Grid.Column="1" Margin="10" Grid.Row="1" Value="{Binding Path=SyncProgress.PercentageComplete}" Maximum="{Binding Path=SyncProgress.MaximumPercentageComplete}" Minimum="{Binding Path=SyncProgress.MinimumPercentageComplete}" ></ProgressBar>
                     <controls:ScrollingTextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding Path=SyncOutput}"></controls:ScrollingTextBox>
                 </Grid>
             </TabItem>

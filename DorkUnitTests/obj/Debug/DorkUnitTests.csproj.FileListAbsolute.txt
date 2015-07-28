@@ -8,3 +8,5 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\bin\Debug\DorkUnitTests.pdb
 C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Debug\DorkUnitTests.csprojResolveAssemblyReference.cache
 C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Debug\DorkUnitTests.dll
 C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Debug\DorkUnitTests.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\bin\Debug\DorkUnitTests.dll.CodeAnalysisLog.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\bin\Debug\DorkUnitTests.dll.lastcodeanalysissucceeded

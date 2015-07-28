@@ -18,3 +18,5 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Debug\DorkDataAccess.pdb
 C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Debug\DorkBusiness.csprojResolveAssemblyReference.cache
 C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Debug\DorkBusiness.dll
 C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Debug\DorkBusiness.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Debug\DorkBusiness.dll.CodeAnalysisLog.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Debug\DorkBusiness.dll.lastcodeanalysissucceeded

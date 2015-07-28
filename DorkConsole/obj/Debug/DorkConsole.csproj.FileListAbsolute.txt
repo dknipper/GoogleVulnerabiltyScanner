@@ -8,3 +8,5 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Debug\DorkConsole.exe
 C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Debug\DorkConsole.pdb
 C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\obj\Debug\DorkConsole.exe
 C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\obj\Debug\DorkConsole.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Debug\DorkConsole.exe.CodeAnalysisLog.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Debug\DorkConsole.exe.lastcodeanalysissucceeded

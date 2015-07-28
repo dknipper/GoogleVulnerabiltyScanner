@@ -10,13 +10,10 @@ namespace DorkWindowsApp.ViewModels
     public class GoogleDorkMasterViewModel : BaseViewModel
     {
         private ObservableCollection<GoogleDorkParentViewModel> _googleDorkParentViewModels;
-        private ObservableCollection<string> _googleDorkParentValues;
-        private ObservableCollection<int> _googleDorkParentIds;
         private string _siteToSearch;
         private string _syncOutput;
         private string _keywords;
         private string _browserUrl;
-        private string _navigationBarUrl;
         private GoogleDorkSyncProgressViewModel _syncProgress;
         private readonly GoogleDorkMaster _googleDorkMaster;
         private readonly GoogleDorkSync _googleDorkSync;
@@ -35,34 +32,6 @@ namespace DorkWindowsApp.ViewModels
             {
                 if (_googleDorkParentViewModels == value){return;}
                 _googleDorkParentViewModels = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public ObservableCollection<string> GoogleDorkParentValues
-        {
-            get
-            {
-                return _googleDorkParentValues;
-            }
-            set
-            {
-                if (_googleDorkParentValues == value){return;}
-                _googleDorkParentValues = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public ObservableCollection<int> GoogleDorkParentIds
-        {
-            get
-            {
-                return _googleDorkParentIds;
-            }
-            set
-            {
-                if (_googleDorkParentIds == value){return;}
-                _googleDorkParentIds = value;
                 NotifyPropertyChanged();
             }
         }
@@ -91,20 +60,6 @@ namespace DorkWindowsApp.ViewModels
             {
                 if (_browserUrl == value){return;}
                 _browserUrl = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public string NavigationBarUrl
-        {
-            get
-            {
-                return _navigationBarUrl;
-            }
-            set
-            {
-                if (_navigationBarUrl == value){return;}
-                _navigationBarUrl = value;
                 NotifyPropertyChanged();
             }
         }
@@ -153,7 +108,7 @@ namespace DorkWindowsApp.ViewModels
 
         public GoogleDorkMasterViewModel()
         {
-            _browserUrl = _navigationBarUrl = "http://www.google.com/";
+            _browserUrl = "http://www.google.com/";
             UpdateAllUrlsCommand = new DelegateCommand<string>(UpdateAllUrls, CanUpdateAllUrls);
             SyncCommand = new AsyncDelegateCommand(Sync, CanSync);
             RepopulateGoogleDorkParentsCommand = new DelegateCommand(RepopulateGoogleDorkParents, CanRepopulateGoogleDorkParents);
@@ -183,7 +138,6 @@ namespace DorkWindowsApp.ViewModels
 
         private void UpdateAllUrls(string url)
         {
-            NavigationBarUrl = url;
             BrowserUrl = url;
         }
 
@@ -207,19 +161,17 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Local
+        // ReSharper disable MemberCanBeMadeStatic.Local
         private bool CanUpdateAllUrls(string url)
         {
             return true;
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Local
         private bool CanRepopulateGoogleDorkParents()
         {
             return true;
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Local
         private bool CanSync()
         {
             return true;
