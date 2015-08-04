@@ -136,7 +136,7 @@ namespace DorkBusiness.Google.Entities
                         }
                     case ((int)GoogleDorkColumnIndex.Summary):
                         {
-                            dork.Summary = HttpUtility.HtmlDecode(td.InnerText).Replace("\n", string.Empty);
+                            dork.Summary = HttpUtility.HtmlDecode(td.InnerText).Replace("\n", " ");
                             break;
                         }
                     case ((int)GoogleDorkColumnIndex.Link):

@@ -54,6 +54,7 @@
     <Compile Include="AppSettings\Config.cs" />
     <Compile Include="Google\Entities\GoogleDork.cs" />
     <Compile Include="Google\Entities\GoogleDorkParent.cs" />
+    <Compile Include="Google\Entities\GoogleDorkVulnerableSite.cs" />
     <Compile Include="Google\Enumerations\GoogleDorkParentSort.cs" />
     <Compile Include="Google\Entities\GoogleDorkSyncProgress.cs" />
     <Compile Include="Google\Enumerations\GoogleDorkColumnIndex.cs" />

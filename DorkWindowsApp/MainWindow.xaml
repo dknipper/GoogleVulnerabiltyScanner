@@ -61,7 +61,7 @@
                                 <TreeView Width="500" ItemsSource="{Binding GoogleDorkParentViewModels}">
                                     <TreeView.Resources>
                                         <DataTemplate x:Key="ChildrenDataTemplate">
-                                            <TextBlock Text="{Binding GoogleUrl}" ToolTip="{Binding Summary}">
+                                            <TextBlock Text="{Binding GoogleUrl}" Padding="0,2,0,2" ToolTip="{Binding Summary}">
                                                 <TextBlock.InputBindings>
                                                     <MouseBinding Command="{Binding DataContext.UpdateAllUrlsCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
                                                 </TextBlock.InputBindings>
@@ -70,7 +70,7 @@
                                     </TreeView.Resources>
                                     <TreeView.ItemTemplate>
                                         <HierarchicalDataTemplate ItemsSource="{Binding GoogleDorks}" ItemTemplate="{StaticResource ResourceKey=ChildrenDataTemplate}">
-                                            <TextBlock Text="{Binding Name}" FontWeight="ExtraBold" />
+                                            <TextBlock Text="{Binding Name}" Padding="0,2,0,2" FontWeight="ExtraBold" />
                                         </HierarchicalDataTemplate>
                                     </TreeView.ItemTemplate>
                                     <TreeView.ItemContainerStyle>
@@ -92,7 +92,11 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <WrapPanel Grid.Row="0" Grid.Column="0">
-                                <TextBox Text="{Binding BrowserUrl}" Background="Transparent" BorderThickness="0"  IsReadOnly="True" TextWrapping="Wrap" FontWeight="ExtraBold"/>
+                                <TextBox Text="{Binding BrowserUrl}" Cursor="Hand"  Foreground="Blue" TextDecorations="Underline" Background="Transparent" BorderThickness="0"  IsReadOnly="True" TextWrapping="Wrap">
+                                    <TextBox.InputBindings>
+                                        <MouseBinding Command="{Binding LaunchBrowserCommand}" CommandParameter="{Binding BrowserUrl}" MouseAction="LeftClick" />
+                                    </TextBox.InputBindings>
+                                </TextBox>
                             </WrapPanel>
                             <WebBrowser Margin="0, 8, 0, 0" Grid.Column="0"  Grid.Row="1" utilities:WebBrowserUtility.BindableSource="{Binding BrowserUrl}"/>
                         </Grid>
@@ -114,6 +118,55 @@
                     <Label Grid.Column="0" Margin="10,10,0,10" Grid.Row="1">Progress:</Label>
                     <ProgressBar Grid.Column="1" Margin="10" Grid.Row="1" Value="{Binding Path=SyncProgress.PercentageComplete}" Maximum="{Binding Path=SyncProgress.MaximumPercentageComplete}" Minimum="{Binding Path=SyncProgress.MinimumPercentageComplete}" ></ProgressBar>
                     <controls:ScrollingTextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding Path=SyncOutput}"></controls:ScrollingTextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vulnerabilities">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid PreviewKeyDown="VulnerabilitiesPreviewKeyDown" Grid.Column="0" Width="Auto" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding GoogleDorkVulnerableSiteViewModels}">
+                        <DataGrid.InputBindings>
+                            <KeyBinding Key="Delete" Command="{Binding DeleteSiteVulnerabilityCommand}" CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        </DataGrid.InputBindings>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="6"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="LightGreen" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="150" Binding="{Binding Path=Site}" Header="Site" />
+                            <DataGridTextColumn Width="150" Binding="{Binding Path=Keywords}"  Header="Keywords" />
+                            <DataGridTemplateColumn IsReadOnly="True" Header="Google Url">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <WrapPanel>
+                                            <TextBlock Text="{Binding GoogleUrl}" Cursor="Hand"  Foreground="Blue" TextDecorations="Underline" Background="Transparent" TextWrapping="Wrap">
+                                                <TextBlock.InputBindings>
+                                                    <MouseBinding Command="{Binding DataContext.LaunchBrowserCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
+                                                </TextBlock.InputBindings>
+                                            </TextBlock>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

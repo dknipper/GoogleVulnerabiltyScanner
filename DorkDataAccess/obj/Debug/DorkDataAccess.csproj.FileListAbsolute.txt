@@ -13,3 +13,4 @@ C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Debug\EntityFramework.dll
 C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Debug\EntityFramework.xml
 C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\obj\Debug\DorkDataAccess.dll
 C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\obj\Debug\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\obj\Debug\DorkDataAccess.csprojResolveAssemblyReference.cache

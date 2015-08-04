@@ -21,6 +21,9 @@ namespace DorkWindowsApp
 
             Mapper.CreateMap<GoogleDorkSyncProgressViewModel, GoogleDorkSyncProgress>();
             Mapper.CreateMap<GoogleDorkSyncProgress, GoogleDorkSyncProgressViewModel>();
+
+            Mapper.CreateMap<GoogleDorkVulnerableSiteViewModel, GoogleDorkVulnerableSite>();
+            Mapper.CreateMap<GoogleDorkVulnerableSite, GoogleDorkVulnerableSiteViewModel>();
         }
     }
 }

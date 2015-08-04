@@ -15,6 +15,9 @@ namespace DorkServices.ServiceBehaviors
 
             Mapper.CreateMap<DorkBusiness.Google.Entities.GoogleDorkSyncProgress, GoogleDorkSyncProgress>();
             Mapper.CreateMap<GoogleDorkSyncProgress, DorkBusiness.Google.Entities.GoogleDorkSyncProgress>();
+
+            Mapper.CreateMap<DorkBusiness.Google.Entities.GoogleDorkVulnerableSite, GoogleDorkVulnerableSite>();
+            Mapper.CreateMap<GoogleDorkVulnerableSite, DorkBusiness.Google.Entities.GoogleDorkVulnerableSite>();
         }
     }
 }

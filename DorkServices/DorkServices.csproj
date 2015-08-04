@@ -76,6 +76,7 @@
     <Compile Include="DataContracts\GoogleDorkParent.cs" />
     <Compile Include="DataContracts\GoogleDorkParentSort.cs" />
     <Compile Include="DataContracts\GoogleDorkSyncProgress.cs" />
+    <Compile Include="DataContracts\GoogleDorkVulnerableSite.cs" />
     <Compile Include="Services\DorkService.svc.cs">
       <DependentUpon>DorkService.svc</DependentUpon>
     </Compile>

@@ -102,6 +102,8 @@
     <Compile Include="ViewModels\GoogleDorkSyncProgressViewModel.cs" />
     <Compile Include="ViewModels\GoogleDorkViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\GoogleDorkVulnerableSiteViewModel.cs" />
+    <Compile Include="ViewModels\GoogleDorkVulnerableSiteViewModelCollection.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

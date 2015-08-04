@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace DorkServices.DataContracts
@@ -10,7 +11,7 @@ namespace DorkServices.DataContracts
         public int GoogleDorkParentId { get; set; }
 
         [DataMember]
-        public DateTime DiscoveryDate { get; set; }
+        public DateTime? DiscoveryDate { get; set; }
 
         [DataMember]
         public string GoogleUrl { get; set; }
@@ -20,5 +21,8 @@ namespace DorkServices.DataContracts
 
         [DataMember]
         public string GhdbUrl { get; set; }
+
+        [DataMember]
+        public List<GoogleDorkVulnerableSite> VulnerableSites { get; set; }
     }
 }

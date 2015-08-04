@@ -47,5 +47,15 @@ namespace DorkWindowsApp
         {
             Application.Current.Shutdown();
         }
+
+        private void VulnerabilitiesPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Device.Target.GetType().Name != "DataGridCell" || e.Key != Key.Delete)
+            {
+                return;
+            }
+            var res = MessageBox.Show("Are you sure want to delete this vulnerability?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            e.Handled = (res == MessageBoxResult.No);
+        }
     }
 }

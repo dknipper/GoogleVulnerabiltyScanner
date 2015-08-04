@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [Dork]    Script Date: 5/31/2015 2:52:06 PM ******/
+/****** Object:  Database [Dork]    Script Date: 8/4/2015 9:53:53 AM ******/
 CREATE DATABASE [Dork]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -77,7 +77,7 @@ EXEC sys.sp_db_vardecimal_storage_format N'Dork', N'ON'
 GO
 USE [Dork]
 GO
-/****** Object:  Table [dbo].[GoogleDork]    Script Date: 5/31/2015 2:52:06 PM ******/
+/****** Object:  Table [dbo].[GoogleDork]    Script Date: 8/4/2015 9:53:53 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -96,7 +96,7 @@ CREATE TABLE [dbo].[GoogleDork](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[GoogleDorkParent]    Script Date: 5/31/2015 2:52:06 PM ******/
+/****** Object:  Table [dbo].[GoogleDorkParent]    Script Date: 8/4/2015 9:53:53 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -111,16 +111,16 @@ CREATE TABLE [dbo].[GoogleDorkParent](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[VulnerableSite]    Script Date: 5/31/2015 2:52:06 PM ******/
+/****** Object:  Table [dbo].[VulnerableSite]    Script Date: 8/4/2015 9:53:53 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[VulnerableSite](
-	[Id] [int] NOT NULL,
-	[GoogleUrl] [nvarchar](255) NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Site] [nvarchar](255) NULL,
 	[Keywords] [nvarchar](255) NULL,
+	[GoogleDorkId] [int] NOT NULL,
  CONSTRAINT [PK_VulnerableSite] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -128,7 +128,7 @@ CREATE TABLE [dbo].[VulnerableSite](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  View [dbo].[FullGoogleDork]    Script Date: 5/31/2015 2:52:06 PM ******/
+/****** Object:  View [dbo].[FullGoogleDork]    Script Date: 8/4/2015 9:53:53 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,6 +141,21 @@ FROM         dbo.GoogleDork INNER JOIN
                       dbo.GoogleDorkParent ON dbo.GoogleDork.GoogleDorkParentId = dbo.GoogleDorkParent.Id
 
 GO
-
+ALTER TABLE [dbo].[GoogleDork]  WITH CHECK ADD  CONSTRAINT [FK_GoogleDork_GoogleDorkParent] FOREIGN KEY([GoogleDorkParentId])
+REFERENCES [dbo].[GoogleDorkParent] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[GoogleDork] CHECK CONSTRAINT [FK_GoogleDork_GoogleDorkParent]
+GO
+ALTER TABLE [dbo].[VulnerableSite]  WITH CHECK ADD  CONSTRAINT [FK_VulnerableSite_GoogleDork] FOREIGN KEY([GoogleDorkId])
+REFERENCES [dbo].[GoogleDork] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[VulnerableSite] CHECK CONSTRAINT [FK_VulnerableSite_GoogleDork]
+GO
+USE [master]
+GO
 ALTER DATABASE [Dork] SET  READ_WRITE 
 GO

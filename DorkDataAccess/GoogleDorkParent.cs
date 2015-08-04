@@ -14,7 +14,14 @@ namespace DorkDataAccess
     
     public partial class GoogleDorkParent
     {
+        public GoogleDorkParent()
+        {
+            this.GoogleDorks = new HashSet<GoogleDork>();
+        }
+    
         public string Name { get; set; }
         public int Id { get; set; }
+    
+        public virtual ICollection<GoogleDork> GoogleDorks { get; set; }
     }
 }

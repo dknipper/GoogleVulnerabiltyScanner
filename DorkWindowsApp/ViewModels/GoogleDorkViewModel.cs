@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using DorkBusiness.Google.Entities;
 
 namespace DorkWindowsApp.ViewModels
 {
@@ -8,7 +10,22 @@ namespace DorkWindowsApp.ViewModels
         private string _googleUrl;
         private string _summary;
         private string _ghdbUrl;
-        private DateTime _discoveryDate;
+        private DateTime? _discoveryDate;
+        private ObservableCollection<GoogleDorkVulnerableSiteViewModel> _googleDorkVulnerableSites;
+
+        public ObservableCollection<GoogleDorkVulnerableSiteViewModel> GoogleDorkVulnerableSites
+        {
+            get
+            {
+                return _googleDorkVulnerableSites;
+            }
+            set
+            {
+                if (_googleDorkVulnerableSites == value) { return; }
+                _googleDorkVulnerableSites = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public int GoogleDorkParentId
         {
@@ -66,7 +83,7 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
-        public DateTime DiscoveryDate
+        public DateTime? DiscoveryDate
         {
             get
             {

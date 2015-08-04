@@ -14,11 +14,19 @@ namespace DorkDataAccess
     
     public partial class GoogleDork
     {
+        public GoogleDork()
+        {
+            this.VulnerableSites = new HashSet<VulnerableSite>();
+        }
+    
         public int Id { get; set; }
         public Nullable<System.DateTime> DiscoveryDate { get; set; }
         public string Summary { get; set; }
         public int GoogleDorkParentId { get; set; }
         public string GoogleUrl { get; set; }
         public string GhdbUrl { get; set; }
+    
+        public virtual GoogleDorkParent GoogleDorkParent { get; set; }
+        public virtual ICollection<VulnerableSite> VulnerableSites { get; set; }
     }
 }

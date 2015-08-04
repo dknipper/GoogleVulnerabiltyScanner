@@ -124,6 +124,7 @@
     <Compile Include="Models\GoogleDorkMasterViewModel.cs" />
     <Compile Include="Models\GoogleDorkParentViewModel.cs" />
     <Compile Include="Models\GoogleDorkViewModel.cs" />
+    <Compile Include="Models\GoogleDorkVulnerableSiteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DorkServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>

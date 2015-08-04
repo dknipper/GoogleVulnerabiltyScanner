@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using AutoMapper;
 using DorkBusiness.Google.Entities;
@@ -10,6 +11,7 @@ namespace DorkWindowsApp.ViewModels
     public class GoogleDorkMasterViewModel : BaseViewModel
     {
         private ObservableCollection<GoogleDorkParentViewModel> _googleDorkParentViewModels;
+        private GoogleDorkVulnerableSiteViewModelCollection _googleDorkVulnerableSiteViewModels;
         private string _siteToSearch;
         private string _syncOutput;
         private string _keywords;
@@ -19,8 +21,11 @@ namespace DorkWindowsApp.ViewModels
         private readonly GoogleDorkSync _googleDorkSync;
 
         public DelegateCommand RepopulateGoogleDorkParentsCommand { get; private set; }
+        public DelegateCommand<string> LaunchBrowserCommand { get; private set; }
         public AsyncDelegateCommand SyncCommand { get; private set; }
         public DelegateCommand<string> UpdateAllUrlsCommand { get; private set; }
+        public DelegateCommand SaveSiteVulnerabilitiesCommand { get; private set; }
+        public DelegateCommand<GoogleDorkVulnerableSiteViewModel> DeleteSiteVulnerabilityCommand { get; private set; }
 
         public ObservableCollection<GoogleDorkParentViewModel> GoogleDorkParentViewModels
         {
@@ -32,6 +37,20 @@ namespace DorkWindowsApp.ViewModels
             {
                 if (_googleDorkParentViewModels == value){return;}
                 _googleDorkParentViewModels = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public GoogleDorkVulnerableSiteViewModelCollection GoogleDorkVulnerableSiteViewModels
+        {
+            get
+            {
+                return _googleDorkVulnerableSiteViewModels;
+            }
+            set
+            {
+                if (_googleDorkVulnerableSiteViewModels == value) { return; }
+                _googleDorkVulnerableSiteViewModels = value;
                 NotifyPropertyChanged();
             }
         }
@@ -112,7 +131,11 @@ namespace DorkWindowsApp.ViewModels
             UpdateAllUrlsCommand = new DelegateCommand<string>(UpdateAllUrls, CanUpdateAllUrls);
             SyncCommand = new AsyncDelegateCommand(Sync, CanSync);
             RepopulateGoogleDorkParentsCommand = new DelegateCommand(RepopulateGoogleDorkParents, CanRepopulateGoogleDorkParents);
+            SaveSiteVulnerabilitiesCommand = new DelegateCommand(SaveSiteVulnerabilities, CanSaveSiteVulnerabilities);
+            DeleteSiteVulnerabilityCommand = new DelegateCommand<GoogleDorkVulnerableSiteViewModel>(DeleteSiteVulnerability, CanDeleteSiteVulnerability);
+            LaunchBrowserCommand = new DelegateCommand<string>(LaunchBrowser, CanLaunchBrowser);
             _googleDorkMaster = new GoogleDorkMaster();
+            _googleDorkVulnerableSiteViewModels = Mapper.Map<GoogleDorkVulnerableSiteViewModelCollection>(GoogleDorkVulnerableSite.GetGoogleDorkVulnerableSites());
             _googleDorkParentViewModels = Mapper.Map<ObservableCollection<GoogleDorkParentViewModel>>(_googleDorkMaster.SearchGoogleDorks(_siteToSearch, _keywords));
             _googleDorkSync = new GoogleDorkSync();
             _googleDorkSync.OnGoogleDorkSyncProgressChange += GoogleDorkSyncProgressChange;
@@ -124,11 +147,6 @@ namespace DorkWindowsApp.ViewModels
             SyncProgress.Title = e.ProcessedItem.Title;
             SyncProgress.PercentageComplete = e.ProcessedItem.PercentageComplete;
             SyncProgress.Summary = e.ProcessedItem.Summary;
-
-            if (e.ProcessedItem.PercentageComplete >= 100)
-            {
-                
-            }
 
             SyncOutput =
                 (e.ProcessedItem.PercentageComplete >= 100)
@@ -162,6 +180,21 @@ namespace DorkWindowsApp.ViewModels
         }
 
         // ReSharper disable MemberCanBeMadeStatic.Local
+        private void LaunchBrowser(string url)
+        {
+            Process.Start(new ProcessStartInfo(url));
+        }
+
+        private void SaveSiteVulnerabilities()
+        {
+
+        }
+
+        private void DeleteSiteVulnerability(GoogleDorkVulnerableSiteViewModel vulnerableSite)
+        {
+            GoogleDorkVulnerableSiteViewModels.Remove(vulnerableSite);
+        }
+        
         private bool CanUpdateAllUrls(string url)
         {
             return true;
@@ -173,6 +206,21 @@ namespace DorkWindowsApp.ViewModels
         }
 
         private bool CanSync()
+        {
+            return true;
+        }
+
+        private bool CanSaveSiteVulnerabilities()
+        {
+            return true;
+        }
+
+        private bool CanDeleteSiteVulnerability(GoogleDorkVulnerableSiteViewModel vulnerableSite)
+        {
+            return true;
+        }
+
+        private bool CanLaunchBrowser(string url)
         {
             return true;
         }

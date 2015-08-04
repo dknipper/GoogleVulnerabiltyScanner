@@ -5,10 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4f227e16114645f09d23b5908716c376" Name="Diagram1">
-        <EntityTypeShape EntityType="DorkModel.GoogleDork" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DorkModel.GoogleDorkParent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DorkModel.VulnerableSite" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DorkModel.FullGoogleDork" Width="1.5" PointX="7.6241674328335414" PointY="13.776585823752258" />
+        <EntityTypeShape EntityType="DorkModel.GoogleDork" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DorkModel.GoogleDorkParent" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="DorkModel.VulnerableSite" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="DorkModel.FullGoogleDork" Width="1.5" PointX="0.75" PointY="4.75" />
+        <AssociationConnector Association="DorkModel.FK_GoogleDork_GoogleDorkParent" />
+        <AssociationConnector Association="DorkModel.FK_VulnerableSite_GoogleDork" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

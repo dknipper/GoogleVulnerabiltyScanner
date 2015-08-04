@@ -17,6 +17,9 @@ namespace DorkWeb
             Mapper.CreateMap<GoogleDorkParentViewModel, GoogleDorkParent>();
             Mapper.CreateMap<GoogleDorkParent, GoogleDorkParentViewModel>();
 
+            //Mapper.CreateMap<GoogleDorkVulnerableSiteViewModel, GoogleDorkVulnerableSite>();
+            //Mapper.CreateMap<GoogleDorkVulnerableSite, GoogleDorkVulnerableSiteViewModel>();
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

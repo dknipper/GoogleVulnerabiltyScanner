@@ -15,8 +15,10 @@ namespace DorkDataAccess
     public partial class VulnerableSite
     {
         public int Id { get; set; }
-        public string GoogleUrl { get; set; }
         public string Site { get; set; }
         public string Keywords { get; set; }
+        public int GoogleDorkId { get; set; }
+    
+        public virtual GoogleDork GoogleDork { get; set; }
     }
 }
