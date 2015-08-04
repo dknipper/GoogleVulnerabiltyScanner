@@ -150,8 +150,20 @@
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="150" Binding="{Binding Path=Site}" Header="Site" />
-                            <DataGridTextColumn Width="150" Binding="{Binding Path=Keywords}"  Header="Keywords" />
+                            <DataGridTextColumn Width="150" Binding="{Binding Path=Site}" Header="Site">
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="MaxLength" Value="{Binding Path=SiteMaxLength}"/>
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="150" Binding="{Binding Path=Keywords}"  Header="Keywords">
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="MaxLength" Value="{Binding Path=KeywordsMaxLength}"/>
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
                             <DataGridTemplateColumn IsReadOnly="True" Header="Google Url">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate >

@@ -84,6 +84,16 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
+        public int KeywordsMaxLength
+        {
+            get { return 255; }
+        }
+
+        public int SiteMaxLength
+        {
+            get { return 255; }
+        }
+
         public string GoogleUrl
         {
             get
