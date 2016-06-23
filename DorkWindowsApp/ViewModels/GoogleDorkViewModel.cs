@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using DorkBusiness.Google.Entities;
 
 namespace DorkWindowsApp.ViewModels
 {
@@ -8,6 +7,8 @@ namespace DorkWindowsApp.ViewModels
     {
         private int _googleDorkParentId;
         private string _googleUrl;
+        private bool _visibleOnTree;
+        private bool _isSelected;
         private string _summary;
         private string _ghdbUrl;
         private DateTime? _discoveryDate;
@@ -55,6 +56,33 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
+        public bool VisibleOnTree
+        {
+            get
+            {
+                return _visibleOnTree;
+            }
+            set
+            {
+                if (_visibleOnTree == value) { return; }
+                _visibleOnTree = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsSelected
+        {
+            get
+            {
+                return _isSelected;
+            }
+            set
+            {
+                if (value == _isSelected) { return; }
+                _isSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
         public string Summary
         {
             get

@@ -3,3 +3,8 @@ C:\Visual Studio Projects\Dork\DorkConsole\bin\Release\DorkConsole.exe
 C:\Visual Studio Projects\Dork\DorkConsole\bin\Release\DorkConsole.pdb
 C:\Visual Studio Projects\Dork\DorkConsole\obj\Release\DorkConsole.exe
 C:\Visual Studio Projects\Dork\DorkConsole\obj\Release\DorkConsole.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Release\DorkConsole.exe.config
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Release\DorkConsole.exe
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\bin\Release\DorkConsole.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\obj\Release\DorkConsole.exe
+C:\GitHub\GoogleVulnerabiltyScanner\DorkConsole\obj\Release\DorkConsole.pdb

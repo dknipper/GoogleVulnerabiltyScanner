@@ -16,6 +16,7 @@ namespace DorkWindowsApp.ViewModels
         private string _syncOutput;
         private string _keywords;
         private string _browserUrl;
+        private string _searchTerm;
         private GoogleDorkSyncProgressViewModel _syncProgress;
         private readonly GoogleDorkMaster _googleDorkMaster;
         private readonly GoogleDorkSync _googleDorkSync;
@@ -23,7 +24,7 @@ namespace DorkWindowsApp.ViewModels
         public DelegateCommand RepopulateGoogleDorkParentsCommand { get; private set; }
         public DelegateCommand<string> LaunchBrowserCommand { get; private set; }
         public AsyncDelegateCommand SyncCommand { get; private set; }
-        public DelegateCommand<string> UpdateAllUrlsCommand { get; private set; }
+        public DelegateCommand<string> SelectGoogleDorkFromTreeCommand { get; private set; }
         public DelegateCommand SaveSiteVulnerabilitiesCommand { get; private set; }
         public DelegateCommand<GoogleDorkVulnerableSiteViewModel> DeleteSiteVulnerabilityCommand { get; private set; }
 
@@ -97,6 +98,20 @@ namespace DorkWindowsApp.ViewModels
             }
         }
 
+        public string SearchTerm
+        {
+            get
+            {
+                return _searchTerm;
+            }
+            set
+            {
+                if (_searchTerm == value) { return; }
+                _searchTerm = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string SyncOutput
         {
             get
@@ -128,7 +143,7 @@ namespace DorkWindowsApp.ViewModels
         public GoogleDorkMasterViewModel()
         {
             _browserUrl = "http://www.google.com/";
-            UpdateAllUrlsCommand = new DelegateCommand<string>(UpdateAllUrls, CanUpdateAllUrls);
+            SelectGoogleDorkFromTreeCommand = new DelegateCommand<string>(SelectGoogleDorkFromTree, CanUpdateAllUrls);
             SyncCommand = new AsyncDelegateCommand(Sync, CanSync);
             RepopulateGoogleDorkParentsCommand = new DelegateCommand(RepopulateGoogleDorkParents, CanRepopulateGoogleDorkParents);
             SaveSiteVulnerabilitiesCommand = new DelegateCommand(SaveSiteVulnerabilities, CanSaveSiteVulnerabilities);
@@ -154,9 +169,17 @@ namespace DorkWindowsApp.ViewModels
                     : string.Format("{0}{4}{4}{1}{4}{2}{4}{3}", _syncOutput, e.ProcessedItem.GoogleDorkParentName, e.ProcessedItem.Title, e.ProcessedItem.Summary, System.Environment.NewLine);
         }
 
-        private void UpdateAllUrls(string url)
+        private void SelectGoogleDorkFromTree(string url)
         {
             BrowserUrl = url;
+
+            foreach (var googleDorkParent in GoogleDorkParentViewModels)
+            {
+                foreach (var googleDork in googleDorkParent.GoogleDorks)
+                {
+                    googleDork.IsSelected = googleDork.GoogleUrl == url;
+                }
+            }
         }
 
         private void Sync()
@@ -168,6 +191,7 @@ namespace DorkWindowsApp.ViewModels
         private void RepopulateGoogleDorkParents()
         {
             var searchResults = _googleDorkMaster.SearchGoogleDorks(SiteToSearch, Keywords, GoogleDorkParentViewModels.Select(x => x.Id).ToList());
+            
             foreach (var googleDorkParent in GoogleDorkParentViewModels)
             {
                 var parent = googleDorkParent;

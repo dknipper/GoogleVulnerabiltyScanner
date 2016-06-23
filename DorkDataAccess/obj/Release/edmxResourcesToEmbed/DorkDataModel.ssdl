@@ -1,26 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DorkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DorkModelStoreContainer">
-    <EntitySet Name="GoogleDork" EntityType="DorkModel.Store.GoogleDork" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="GoogleDorkParent" EntityType="DorkModel.Store.GoogleDorkParent" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="VulnerableSite" EntityType="DorkModel.Store.VulnerableSite" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FullGoogleDork" EntityType="DorkModel.Store.FullGoogleDork" store:Type="Views" store:Schema="dbo" store:Name="FullGoogleDork">
-      <DefiningQuery>SELECT 
-      [FullGoogleDork].[DiscoveryDate] AS [DiscoveryDate], 
-      [FullGoogleDork].[Summary] AS [Summary], 
-      [FullGoogleDork].[GoogleDorkParentId] AS [GoogleDorkParentId], 
-      [FullGoogleDork].[GoogleDorkParentName] AS [GoogleDorkParentName], 
-      [FullGoogleDork].[GoogleUrl] AS [GoogleUrl], 
-      [FullGoogleDork].[GhdbUrl] AS [GhdbUrl], 
-      [FullGoogleDork].[GoogleDorkId] AS [GoogleDorkId]
-      FROM [dbo].[FullGoogleDork] AS [FullGoogleDork]</DefiningQuery>
-    </EntitySet>
-  </EntityContainer>
+<Schema Namespace="DorkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="GoogleDork">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DiscoveryDate" Type="datetime" />
     <Property Name="Summary" Type="nvarchar(max)" />
     <Property Name="GoogleDorkParentId" Type="int" Nullable="false" />
@@ -31,21 +15,20 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="VulnerableSite">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="GoogleUrl" Type="nvarchar" MaxLength="255" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Site" Type="nvarchar" MaxLength="255" />
     <Property Name="Keywords" Type="nvarchar" MaxLength="255" />
+    <Property Name="GoogleDorkId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Dork.dbo.FullGoogleDork' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'Dork.dbo.FullGoogleDork' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="FullGoogleDork">
     <Key>
       <PropertyRef Name="GoogleDorkParentId" />
@@ -55,9 +38,57 @@
     <Property Name="DiscoveryDate" Type="datetime" />
     <Property Name="Summary" Type="nvarchar(max)" />
     <Property Name="GoogleDorkParentId" Type="int" Nullable="false" />
-    <Property Name="GoogleDorkParentName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="GoogleDorkParentName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="GoogleUrl" Type="nchar" MaxLength="1000" />
     <Property Name="GhdbUrl" Type="nchar" MaxLength="1000" />
     <Property Name="GoogleDorkId" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK_GoogleDork_GoogleDorkParent">
+    <End Role="GoogleDorkParent" Type="Self.GoogleDorkParent" Multiplicity="1" />
+    <End Role="GoogleDork" Type="Self.GoogleDork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoogleDorkParent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoogleDork">
+        <PropertyRef Name="GoogleDorkParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VulnerableSite_GoogleDork">
+    <End Role="GoogleDork" Type="Self.GoogleDork" Multiplicity="1" />
+    <End Role="VulnerableSite" Type="Self.VulnerableSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoogleDork">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VulnerableSite">
+        <PropertyRef Name="GoogleDorkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DorkModelStoreContainer">
+    <EntitySet Name="GoogleDork" EntityType="Self.GoogleDork" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoogleDorkParent" EntityType="Self.GoogleDorkParent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VulnerableSite" EntityType="Self.VulnerableSite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FullGoogleDork" EntityType="Self.FullGoogleDork" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[FullGoogleDork].[DiscoveryDate] AS [DiscoveryDate], 
+[FullGoogleDork].[Summary] AS [Summary], 
+[FullGoogleDork].[GoogleDorkParentId] AS [GoogleDorkParentId], 
+[FullGoogleDork].[GoogleDorkParentName] AS [GoogleDorkParentName], 
+[FullGoogleDork].[GoogleUrl] AS [GoogleUrl], 
+[FullGoogleDork].[GhdbUrl] AS [GhdbUrl], 
+[FullGoogleDork].[GoogleDorkId] AS [GoogleDorkId]
+FROM [dbo].[FullGoogleDork] AS [FullGoogleDork]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_GoogleDork_GoogleDorkParent" Association="Self.FK_GoogleDork_GoogleDorkParent">
+      <End Role="GoogleDorkParent" EntitySet="GoogleDorkParent" />
+      <End Role="GoogleDork" EntitySet="GoogleDork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VulnerableSite_GoogleDork" Association="Self.FK_VulnerableSite_GoogleDork">
+      <End Role="GoogleDork" EntitySet="GoogleDork" />
+      <End Role="VulnerableSite" EntitySet="VulnerableSite" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

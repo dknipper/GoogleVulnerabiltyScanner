@@ -52,37 +52,49 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Column="0" Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" x:Name="Rect" VerticalAlignment="Stretch" Visibility="Collapsed">
-                                <TreeView Width="500" ItemsSource="{Binding GoogleDorkParentViewModels}">
-                                    <TreeView.Resources>
-                                        <DataTemplate x:Key="ChildrenDataTemplate">
-                                            <TextBlock Text="{Binding GoogleUrl}" Padding="0,2,0,2" ToolTip="{Binding Summary}">
-                                                <TextBlock.InputBindings>
-                                                    <MouseBinding Command="{Binding DataContext.UpdateAllUrlsCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
-                                                </TextBlock.InputBindings>
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </TreeView.Resources>
-                                    <TreeView.ItemTemplate>
-                                        <HierarchicalDataTemplate ItemsSource="{Binding GoogleDorks}" ItemTemplate="{StaticResource ResourceKey=ChildrenDataTemplate}">
-                                            <TextBlock Text="{Binding Name}" Padding="0,2,0,2" FontWeight="ExtraBold" />
-                                        </HierarchicalDataTemplate>
-                                    </TreeView.ItemTemplate>
-                                    <TreeView.ItemContainerStyle>
-                                        <Style TargetType="{x:Type TreeViewItem}">
-                                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                                            <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
-                                        </Style>
-                                    </TreeView.ItemContainerStyle>
-                                </TreeView>
-                            </Grid>
-                            <Button Grid.Column="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="32" Height="32" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" Click="Button_Click" Content="&gt;"/>
-                        </Grid>
+                        <Expander Grid.Column="0" Width="Auto" ExpandDirection="Right" Header="Dorks " IsExpanded="True" >
+                            <Border Background="#acaeb5" Margin="0" Padding="1">
+                                <Border BorderBrush="Black" BorderThickness="2,2,0,0">
+                                    <Border BorderBrush="White" BorderThickness="0,0,2,2">
+                                        <Grid Background="White">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <WrapPanel Grid.Row="0" Margin="10, 10, 4, 8">
+                                                <Label Content="Search:"/>
+                                                <TextBox Width="125" Text="{Binding SearchTerm}"/>
+                                                <Button Width="30" Command="{Binding RepopulateGoogleDorkParentsCommand}" Margin="8, 0, 0, 0">Go</Button>
+                                            </WrapPanel>
+                                            <TreeView Grid.Row="1" Width="325" BorderBrush="White" ItemsSource="{Binding GoogleDorkParentViewModels}">
+                                                <TreeView.Resources>
+                                                    <DataTemplate x:Key="ChildrenDataTemplate">
+                                                        <StackPanel Visibility="{Binding VisibleOnTree}" >
+                                                            <TextBlock Text="{Binding GoogleUrl}" Padding="0,2,0,2" ToolTip="{Binding Summary}">
+                                                                <TextBlock.InputBindings>
+                                                                    <MouseBinding Command="{Binding DataContext.SelectGoogleDorkFromTreeCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding GoogleUrl}" MouseAction="LeftClick" />
+                                                                </TextBlock.InputBindings>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </TreeView.Resources>
+                                                <TreeView.ItemTemplate>
+                                                    <HierarchicalDataTemplate ItemsSource="{Binding GoogleDorks}" ItemTemplate="{StaticResource ResourceKey=ChildrenDataTemplate}">
+                                                        <TextBlock Text="{Binding Name}" Padding="0,2,0,2" FontWeight="ExtraBold" />
+                                                    </HierarchicalDataTemplate>
+                                                </TreeView.ItemTemplate>
+                                                <TreeView.ItemContainerStyle>
+                                                    <Style TargetType="{x:Type TreeViewItem}">
+                                                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                                        <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                                                    </Style>
+                                                </TreeView.ItemContainerStyle>
+                                            </TreeView>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Expander>
                         <Grid Grid.Column="1" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />

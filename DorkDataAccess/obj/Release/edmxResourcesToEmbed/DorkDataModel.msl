@@ -4,30 +4,30 @@
     <EntitySetMapping Name="GoogleDorks">
       <EntityTypeMapping TypeName="DorkModel.GoogleDork">
         <MappingFragment StoreEntitySet="GoogleDork">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
-          <ScalarProperty Name="Summary" ColumnName="Summary" />
-          <ScalarProperty Name="GoogleDorkParentId" ColumnName="GoogleDorkParentId" />
-          <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
           <ScalarProperty Name="GhdbUrl" ColumnName="GhdbUrl" />
+          <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
+          <ScalarProperty Name="GoogleDorkParentId" ColumnName="GoogleDorkParentId" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GoogleDorkParents">
       <EntityTypeMapping TypeName="DorkModel.GoogleDorkParent">
         <MappingFragment StoreEntitySet="GoogleDorkParent">
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VulnerableSites">
       <EntityTypeMapping TypeName="DorkModel.VulnerableSite">
         <MappingFragment StoreEntitySet="VulnerableSite">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="GoogleUrl" ColumnName="GoogleUrl" />
-          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="GoogleDorkId" ColumnName="GoogleDorkId" />
           <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

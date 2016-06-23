@@ -8,3 +8,13 @@ C:\Visual Studio Projects\Dork\DorkBusiness\bin\Release\DorkDataAccess.pdb
 C:\Visual Studio Projects\Dork\DorkBusiness\obj\Release\DorkBusiness.csprojResolveAssemblyReference.cache
 C:\Visual Studio Projects\Dork\DorkBusiness\obj\Release\DorkBusiness.dll
 C:\Visual Studio Projects\Dork\DorkBusiness\obj\Release\DorkBusiness.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\DorkBusiness.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\DorkBusiness.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\DorkDataAccess.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\EntityFramework.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\HtmlAgilityPack.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\System.Linq.Dynamic.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\bin\Release\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Release\DorkBusiness.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Release\DorkBusiness.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkBusiness\obj\Release\DorkBusiness.pdb

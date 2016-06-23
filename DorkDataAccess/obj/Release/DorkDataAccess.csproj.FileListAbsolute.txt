@@ -5,3 +5,10 @@ C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\EntityFramework.dll
 C:\Visual Studio Projects\Dork\DorkDataAccess\bin\Release\EntityFramework.xml
 C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Release\DorkDataAccess.dll
 C:\Visual Studio Projects\Dork\DorkDataAccess\obj\Release\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Release\DorkDataAccess.dll.config
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Release\DorkDataAccess.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Release\DorkDataAccess.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Release\EntityFramework.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\bin\Release\EntityFramework.xml
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\obj\Release\DorkDataAccess.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkDataAccess\obj\Release\DorkDataAccess.pdb

@@ -2,3 +2,8 @@ C:\Visual Studio Projects\Dork\DorkUnitTests\bin\Release\DorkUnitTests.dll
 C:\Visual Studio Projects\Dork\DorkUnitTests\bin\Release\DorkUnitTests.pdb
 C:\Visual Studio Projects\Dork\DorkUnitTests\obj\Release\DorkUnitTests.dll
 C:\Visual Studio Projects\Dork\DorkUnitTests\obj\Release\DorkUnitTests.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\bin\Release\DorkUnitTests.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\bin\Release\DorkUnitTests.pdb
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Release\DorkUnitTests.csprojResolveAssemblyReference.cache
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Release\DorkUnitTests.dll
+C:\GitHub\GoogleVulnerabiltyScanner\DorkUnitTests\obj\Release\DorkUnitTests.pdb
